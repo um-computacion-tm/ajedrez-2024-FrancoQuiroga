@@ -12,7 +12,7 @@ def play(Ajedrez):
         #Verificar el Movimiento
         ajedrez.mover(desde_fila,desde_col,hasta_fila,hasta_col)
         #Mover la pieza
-        #Cambiar de Turnp
+        #Cambiar de Turno
     except Exception as e:
         print('Error')
 if __name__ == '__main__':
