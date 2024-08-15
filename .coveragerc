@@ -1,7 +1,7 @@
 [run]
-source = main
+source = game, test 
 omit =
-    venv/*
+    env/*
     */test/*
     */__init__.py
 [report]
