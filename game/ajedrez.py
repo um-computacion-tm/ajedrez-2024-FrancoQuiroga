@@ -1,4 +1,4 @@
-from tablero import Tablero
+from game.tablero import Tablero
 class Ajedrez:
     def __init__(self,) -> None:
         self.__tablero__ = Tablero()

@@ -1,4 +1,4 @@
-from ajedrez import Ajedrez
+from game.ajedrez import Ajedrez
 def main():
     ajedrez = Ajedrez()
     

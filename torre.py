@@ -1,3 +1,0 @@
-from piezas import Piezas
-class Torre(Piezas):
-    ...

@@ -1,4 +1,4 @@
-from piezas import Piezas
+from game.piezas import Piezas
 import unittest
 
 class Test_setup_pieza(unittest.TestCase): # Testea el setup de Pieza y la funcion 

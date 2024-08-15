@@ -1,4 +1,4 @@
-from torre import Torre
+from game.torre import Torre
 class Tablero:
     def __init__(self) -> None:
         self.__posiciones__ = []
