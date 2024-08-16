@@ -1,4 +1,5 @@
 from game.tablero import (Tablero)
+from game.torre import Torre
 import unittest
 
 class Test_Tablero_setup(unittest.TestCase):
@@ -15,6 +16,11 @@ class Test_Tablero_setup(unittest.TestCase):
     def test_posicion_torres_blancas(self):
         self.assertEqual(self.tablerodeprueba.__posiciones__[7][0].decircolor(),'WHITE')
         self.assertEqual(self.tablerodeprueba.__posiciones__[7][7].decircolor(),'WHITE')
+
+    def test_obtn_pieza(self):
+        self.assertIsInstance(self.tablerodeprueba.obtn_pieza(0,7),Torre)
+        self.assertEqual(self.tablerodeprueba.obtn_pieza(0,5),None)
+
 
 
 if __name__ == '__main__':

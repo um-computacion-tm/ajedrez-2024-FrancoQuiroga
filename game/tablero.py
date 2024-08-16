@@ -12,3 +12,6 @@ class Tablero:
         self.__posiciones__[0][7] = Torre('BLACK')
         self.__posiciones__[7][0] = Torre('WHITE')
         self.__posiciones__[7][7] = Torre('WHITE')
+
+    def obtn_pieza(self,fila,columna): #retorna un objeto o none
+        return self.__posiciones__[fila][columna]

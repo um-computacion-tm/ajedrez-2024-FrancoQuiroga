@@ -3,5 +3,5 @@ class Torre(Piezas):
     def __init__(self, COLOR) -> None:
         super().__init__(COLOR)
 
-    def mover(self):
+    def movimiento(self):
         pass
