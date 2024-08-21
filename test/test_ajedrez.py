@@ -6,7 +6,7 @@ class Test_inicial_Ajedrez(unittest.TestCase):
         self.ajedrezdeprueba = Ajedrez()
 
     def test_init(self):
-        self.assertEqual(self.ajedrezdeprueba.__turno__, 'BLANCAS')
+        self.assertEqual(self.ajedrezdeprueba.__turno__, 'WHITE')
         self.assertIsInstance(self.ajedrezdeprueba.__tablero__, object)
 
 

@@ -11,11 +11,11 @@ class Test_Tablero_setup(unittest.TestCase):
         self.assertEqual(self.tablerodeprueba.__posiciones__[5][5], None)
 
     def test_posicion_torres_negras(self):
-        self.assertEqual(self.tablerodeprueba.__posiciones__[0][0].decircolor(),'BLACK')
-        self.assertEqual(self.tablerodeprueba.__posiciones__[0][7].decircolor(),'BLACK')
+        self.assertEqual(self.tablerodeprueba.__posiciones__[0][0].decircolor,'BLACK')
+        self.assertEqual(self.tablerodeprueba.__posiciones__[0][7].decircolor,'BLACK')
     def test_posicion_torres_blancas(self):
-        self.assertEqual(self.tablerodeprueba.__posiciones__[7][0].decircolor(),'WHITE')
-        self.assertEqual(self.tablerodeprueba.__posiciones__[7][7].decircolor(),'WHITE')
+        self.assertEqual(self.tablerodeprueba.__posiciones__[7][0].decircolor,'WHITE')
+        self.assertEqual(self.tablerodeprueba.__posiciones__[7][7].decircolor,'WHITE')
 
     def test_obtn_pieza(self):
         self.assertIsInstance(self.tablerodeprueba.obtn_pieza(0,7),Torre)

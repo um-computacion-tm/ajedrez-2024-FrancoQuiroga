@@ -8,12 +8,12 @@ class Test_setup_torre(unittest.TestCase): # Testea el setup de Pieza y la funci
 
     def test_torrenegra_herenciacorrecta(self):
         self.assertEqual(self.torredeprueba_negra.__color__, 'BLACK')
-        self.assertEqual(self.torredeprueba_negra.decircolor(), 'BLACK')
+        self.assertEqual(self.torredeprueba_negra.decircolor, 'BLACK')
 
 
     def test_torreblanca_herenciacorrecta(self):
         self.assertEqual(self.torredeprueba_blanca.__color__, 'WHITE')
-        self.assertEqual(self.torredeprueba_blanca.decircolor(), 'WHITE')
+        self.assertEqual(self.torredeprueba_blanca.decircolor, 'WHITE')
 
 class Test_movimiento_torre(unittest.TestCase):
     def setUp(self) -> None:

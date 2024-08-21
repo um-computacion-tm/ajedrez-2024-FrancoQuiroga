@@ -1,6 +1,13 @@
 class Piezas:
-    def __init__(self,COLOR) -> None:
-        self.__color__ = COLOR
+    def __init__(self,COLOR:str) -> None:
+        """Parametros:
+        ---------
+        __color__: str
 
-    def decircolor(self):
+        Tiene que ser 'BLACK' o 'WHITE'
+            """
+        self.__color__ = COLOR
+    
+    @property
+    def decircolor(self)-> str:
         return self.__color__

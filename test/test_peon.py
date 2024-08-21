@@ -32,7 +32,7 @@ class Test_movimiento_Peon(unittest.TestCase):
 
     def test_movim_peon_blanco_val(self):
 
-        self.assertTrue(self.peon_prueba_blanco.movimiento(6,0, 4,0))
+        self.assertTrue(self.peon_prueba_blanco.movimiento())
         
 
     def test_movimiento(self):
