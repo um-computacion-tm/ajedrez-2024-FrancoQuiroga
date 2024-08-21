@@ -1,4 +1,5 @@
 from game.peon import Peon
+from game.excepciones import MovimientoErróneo
 import unittest
 class Test_inicial_Peon(unittest.TestCase):
     def setUp(self) -> None:
@@ -32,9 +33,9 @@ class Test_movimiento_Peon(unittest.TestCase):
 
     def test_movim_peon_blanco_val(self):
 
-        self.assertTrue(self.peon_prueba_blanco.movimiento())
+        self.assertTrue(self.peon_prueba_blanco.movimiento(4,2,5,2))
         
-
+        
     def test_movimiento(self):
         
         pass
