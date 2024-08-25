@@ -20,6 +20,8 @@ class Test_movimiento_Peon(unittest.TestCase):
         # que el peon se mueva 1 o 2 posiciones 
         # en su primer turno
         self.assertTrue(self.peon_prueba_negro.movimiento(1,0, 2,0))
+        #import ipdb 
+        #ipdb.set_trace()            
         self.assertTrue(self.peon_prueba_negro.movimiento(1,0, 3,0))
 
         self.assertTrue(self.peon_prueba_blanco.movimiento(6,0, 5,0))
@@ -33,7 +35,7 @@ class Test_movimiento_Peon(unittest.TestCase):
 
     def test_movim_peon_blanco_val(self):
 
-        self.assertTrue(self.peon_prueba_blanco.movimiento(4,2,5,2))
+        self.assertTrue(self.peon_prueba_blanco.movimiento(4,2,3,2))
         
         
     def test_movimiento(self):

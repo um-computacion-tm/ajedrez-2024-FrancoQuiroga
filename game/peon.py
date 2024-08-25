@@ -60,24 +60,28 @@ class Peon(Piezas):
     def movimiento(self,
                    desde_fila: int,desde_col: int
                    ,hasta_fila:int,hasta_col:int) -> bool :
-        """Devuelve True si es valido, Levanta una excepción 
-        si no es válido"""
+        """Devuelve True si es valido, Devuelve False 
+        si no es válido
+        Los parámetros son las posiciones que eligió el usuario
+        para mover una pieza, es importante llamar a la función con
+        los parámetros que el usuario eligió, para verificar
+        correctamente el movimientos"""
         try:
             # Comprueba que el movimiento no sea incorrecto
             puedeatk = self.atacar(desde_fila,desde_col,hasta_fila,hasta_col)
-            if (self.__color__ == 'WHITE') and desde_fila-1 == hasta_fila:
-                if desde_col != hasta_col and puedeatk == False:
-                    raise MovimientoErróneo
-
-                    
             
-            if self.__color__ == 'BLACK' and desde_fila+1 == hasta_fila:
-                if desde_col != hasta_col and puedeatk == False:
-                    raise MovimientoErróneo
-            else:
-                return False
+            if puedeatk == False:
+                if (self.__color__ == 'WHITE') and desde_fila-1 == hasta_fila:
+                    if desde_col == hasta_col :
+                        return True
+                if self.__color__ == 'BLACK' and desde_fila+1 == hasta_fila:
+                    if desde_col == hasta_col:
+                        return True
+                self.movimientoinicial(desde_fila,desde_col,hasta_fila,hasta_col)
                 
-            self.movimientoinicial(desde_fila,desde_col,hasta_fila,hasta_col)
+
+            else:
+                return True
         except NoPuedeatacar:
             return False
         

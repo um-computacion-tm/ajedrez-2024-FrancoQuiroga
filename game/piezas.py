@@ -1,4 +1,11 @@
 class Piezas:
+    """Clase que agrupa todas las piezas
+    
+    El constructor requiere de un color 'BLACK'
+    o 'WHITE'
+    La propiedad 'decircolor' devuelve el dato del constructor
+    """
+
     def __init__(self,COLOR:str) -> None:
         """Parametros:
         ---------
