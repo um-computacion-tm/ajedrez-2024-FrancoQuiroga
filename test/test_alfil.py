@@ -10,7 +10,7 @@ class Test_Alfil(unittest.TestCase):
         self.assertTrue(self.alfilnegro.semueveenblancos)
         self.assertFalse(self.alfilblanco.semueveenblancos)
 
-    def test_movimiento(self):
+    def test_movimiento_válido(self):
         pass
 
 
