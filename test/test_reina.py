@@ -18,7 +18,12 @@ class Test_reina(unittest.TestCase):
         self.assertTrue(self.reina_prueba_negra.diagonal_movimiento(4,4, 7,1))
         self.assertTrue(self.reina_prueba_negra.diagonal_movimiento(4,4, 7,7))
 
+        self.assertFalse(self.reina_prueba_negra.diagonal_movimiento(4,4, 2,5))
         
-
+    def test_movimiento(self):
+        self.assertTrue(self.reina_prueba_blanca.movimiento(0,1, 0,4))
+        self.assertTrue(self.reina_prueba_negra.movimiento(4,4, 7,7))
+        self.assertFalse(self.reina_prueba_negra.movimiento(1,1, 0,4))
+        self.assertFalse(self.reina_prueba_negra.movimiento(4,4, 2,5))
 if __name__ == '__main__':
     unittest.main()

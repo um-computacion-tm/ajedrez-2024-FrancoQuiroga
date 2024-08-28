@@ -40,4 +40,16 @@ class Reina(Piezas):
 
     def movimiento(self,desde_fila:str,desde_col:str,
                    hasta_fila:str,hasta_col:str):
-        pass
+        if self.horizontal_movimiento(desde_fila,desde_col,hasta_fila,hasta_col): 
+              return True
+        
+        if self.diagonal_movimiento(desde_fila,desde_col,hasta_fila,hasta_col):
+              return True
+        else:
+              return False
+        
+        
+        
+        
+        
+        
