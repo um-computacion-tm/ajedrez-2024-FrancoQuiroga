@@ -14,4 +14,25 @@ class Alfil(Piezas):
     def movimiento(self,desde_fila:str,desde_col:str,
                    hasta_fila:str,hasta_col:str) ->True:
         
-        pass
+        filaiteradora = desde_fila
+        columnaiteradora = desde_col
+        #colum_izq = desde_col
+        #colum_dere = desde_col
+        if desde_fila > hasta_fila:
+            multip = -1
+        if desde_fila < hasta_fila:
+            multip = 1
+        if desde_col < hasta_col:
+            multip_lat = 1
+        if desde_col > hasta_col:
+            multip_lat = -1
+        
+        while 0 <= filaiteradora <= 7:
+            filaiteradora += multip * 1
+            columnaiteradora += multip_lat * 1
+            if filaiteradora == hasta_fila:
+                if columnaiteradora == hasta_col:
+                    return True
+                else: return False  
+
+
