@@ -24,6 +24,7 @@ class Reina(Piezas):
                 multip = -1
         if desde_fila < hasta_fila:
                 multip = 1
+                
         if desde_col < hasta_col:
                 multip_lat = 1
         if desde_col > hasta_col:
