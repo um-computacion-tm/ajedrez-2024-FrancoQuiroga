@@ -20,13 +20,25 @@ class Peon(Piezas):
             desde_fila,desde_col,hasta_fila,hasta_col
 
         
+        NO USAR ESTA FUNCIÓN FUERA DE LA CLASE PEÓN
+        PARA VERIFICAR EL MOVIMIENTO, SOLO USAR LA FUNCION:
+        peon.movimiento()
+        
         """
-        if desde_col+1 == hasta_col:
-            if desde_fila+1 == hasta_fila:
+        
+        if (desde_fila+1 == hasta_fila)\
+            and (self.__color__ == 'BLACK'):
+
+            if (desde_col+1 == hasta_col) or\
+            (desde_col-1 == hasta_col):
                 return True
         
-        if desde_col-1 == hasta_col:
-            if desde_fila-1 == hasta_fila:
+        if (desde_fila-1 == hasta_fila) and \
+            (self.__color__ == 'WHITE'):
+
+            if (desde_col-1 == hasta_col) or \
+                (desde_col+1 == hasta_col):
+
                 return True
         
         else: return False
@@ -43,8 +55,10 @@ class Peon(Piezas):
 
         Parámetros descriptos en 
         el método movimiento() que llama a este método
-        
-
+                
+        NO USAR ESTA FUNCIÓN FUERA DE LA CLASE PEÓN
+        PARA VERIFICAR EL MOVIMIENTO, SOLO USAR LA FUNCION:
+        peon.movimiento()
         
         """
         if (desde_fila == 1) and (self.__color__ == 'BLACK'):
@@ -52,10 +66,28 @@ class Peon(Piezas):
                 return True
             
         if (desde_fila == 6) and (self.__color__ == 'WHITE'):
-            if (hasta_fila == 5) or (hasta_fila == 4):
+            if (hasta_fila == 4):
                 return True
+        #(hasta_fila == 5) or 
+        else: return False
+    def movimientonormal(self,
+                   desde_fila: int,desde_col: int
+                   ,hasta_fila:int,hasta_col:int) -> bool :   
+        """Movimiento de un peon, en línea recta y uno hacia delante
         
-        
+        NO USAR ESTA FUNCIÓN FUERA DE LA CLASE PEÓN
+        PARA VERIFICAR EL MOVIMIENTO, SOLO USAR LA FUNCION:
+        peon.movimiento()
+        """
+         
+        if (self.__color__ == 'WHITE') and desde_fila-1 == hasta_fila:
+                    if desde_col == hasta_col :
+                        return True
+        if self.__color__ == 'BLACK' and desde_fila+1 == hasta_fila:
+                    if desde_col == hasta_col:
+                        return True
+        else:
+             return False
         
     def movimiento(self,
                    desde_fila: int,desde_col: int
@@ -66,31 +98,16 @@ class Peon(Piezas):
         para mover una pieza, es importante llamar a la función con
         los parámetros que el usuario eligió, para verificar
         correctamente el movimientos"""
-        try:
-            # Comprueba que el movimiento no sea incorrecto
-            puedeatk = self.atacar(desde_fila,desde_col,hasta_fila,hasta_col)
-            
-            if puedeatk == False:
-                if (self.__color__ == 'WHITE') and desde_fila-1 == hasta_fila:
-                    if desde_col == hasta_col :
-                        return True
-                if self.__color__ == 'BLACK' and desde_fila+1 == hasta_fila:
-                    if desde_col == hasta_col:
-                        return True
-                self.movimientoinicial(desde_fila,desde_col,hasta_fila,hasta_col)
-                
-
-            else:
-                return True
-        except NoPuedeatacar:
-            return False
-        
-        except MovimientoErróneo as e:
-            return False
-        
-        else:
-            return True
-        
-
+        if self.movimientonormal(desde_fila,desde_col,
+                                 hasta_fila,hasta_col):
+             return True
+        if self.movimientoinicial(desde_fila,desde_col,
+                                 hasta_fila,hasta_col):
+             return True
+        if self.atacar(desde_fila,desde_col,
+                                 hasta_fila,hasta_col):
+             return True
+        else: return False
+             
 
             

@@ -6,7 +6,7 @@ que verifica los movimientos en el tablero.
 - Test para las clases de arriba.
 
 ### Arreglos:
-- Test y función de movimiento en la clase Peon [WIP]
+- Test y función de movimiento en la clase Peon 
 
 ### Obsolecente:
 - Atributo de inicio en la clase Alfil, llamado 'semueveenblancos'
