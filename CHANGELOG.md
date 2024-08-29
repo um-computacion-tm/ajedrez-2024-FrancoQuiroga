@@ -1,5 +1,12 @@
 # Usuario de github: FrancoQuiroga
-## [ Unreleased ] [V 0.0.2] 2024/08/15:
+## [ Unreleased ] [ V 0.0.3] 2024/08/29:
+## Adiciones:
+- Clase Rey y su función de movimiento, incluyendo sus tests.
+- Verificaciones de movimientos en el tablero [ WIP ]
+- Verificaciones de reglas del ajedrez en el tablero [ WIP ]
+
+
+##  [V 0.0.2] 2024/08/15:
 ### Adiciones:
 - Clases Peon, Alfil, Reina. También tienen funciones 
 que verifica los movimientos en el tablero.
