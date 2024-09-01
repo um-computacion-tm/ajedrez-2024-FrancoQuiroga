@@ -7,6 +7,7 @@ class Rey(Piezas):
     
     def movimiento(self,desde_fila:str,desde_col:str,
                    hasta_fila:str,hasta_col:str,)-> bool:
+        
         tupladeemparejamientofila = (desde_fila-1, desde_fila+1)
         tupladeemparejamientocolumn = (desde_col -1, desde_col +1)
 
@@ -19,6 +20,7 @@ class Rey(Piezas):
                 return True
             # El código funciona correctamente esté o no este código
             #(No tengo idea por qué pero funciona igual :/ )
+            # Lo dejo a este código por si acaso salta algún error en el futuro
             #else: 
             #    return False
         else: 
