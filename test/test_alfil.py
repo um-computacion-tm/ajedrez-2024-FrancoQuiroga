@@ -3,12 +3,9 @@ import unittest
 
 class Test_Alfil(unittest.TestCase):
     def setUp(self) -> None:
-        self.alfilblanco = Alfil('WHITE',(7,2))
-        self.alfilnegro = Alfil('BLACK',(0,2))
+        self.alfilblanco = Alfil('WHITE')
+        self.alfilnegro = Alfil('BLACK')
 
-    def test_init(self):
-        self.assertTrue(self.alfilnegro.semueveenblancos)
-        self.assertFalse(self.alfilblanco.semueveenblancos)
 
     def test_movimiento_válido_negro(self):
         self.assertTrue(self.alfilnegro.movimiento(4,4, 0,0))

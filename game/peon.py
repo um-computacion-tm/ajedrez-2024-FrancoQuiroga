@@ -1,5 +1,5 @@
 from game.piezas import Piezas
-from game.excepciones import (MovimientoErróneo, NoPuedeatacar, Puedeatacar)
+from game.excepciones import (MovimientoErróneo, NoPuedeatacar)
 
 
 class Peon(Piezas):
