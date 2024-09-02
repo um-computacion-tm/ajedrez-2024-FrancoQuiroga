@@ -56,11 +56,18 @@ class Tablero:
         else: return True
     def val_mov_pieza(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        pass
+        if self.__posiciones__[desde_fila][desde_col].movimiento(desde_fila,desde_col,
+            hasta_fila, hasta_col):
+            print('RETORNO TRUE')
+            return True
+        else: 
+            print('MOVIMIENTOERRONEO')
+            raise MovimientoErróneo
+        
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         pass
-    def pieza_alidada(desde_fila,desde_col,hasta_fila,hasta_col):
+    def pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col):
         pass
     def val_movimiento(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
@@ -68,9 +75,9 @@ class Tablero:
         esvalido = False
         lista_validaciones = [self.val_adentro_tablero(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_pieza_existe(desde_fila,desde_col,hasta_fila,hasta_col),
+                            self.pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_mov_pieza(desde_fila,desde_col,hasta_fila,hasta_col),
-                            self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),
-                            self.pieza_alidada(desde_fila,desde_col,hasta_fila,hasta_col)]
+                            self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),]
         for validacion in lista_validaciones:
             esvalido = validacion
             if esvalido == False:

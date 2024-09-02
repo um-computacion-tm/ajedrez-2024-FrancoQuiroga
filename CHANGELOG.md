@@ -1,4 +1,5 @@
 # Usuario de github: FrancoQuiroga
+# Apellido y Nombre: Quiroga, Franco
 ## [ Unreleased ] [ V 0.0.3] 2024/08/29:
 ## Adiciones:
 - Clase Rey y su función de movimiento, incluyendo sus tests.

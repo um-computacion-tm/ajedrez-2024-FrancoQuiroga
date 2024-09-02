@@ -41,7 +41,16 @@ class Test_Tablero_setup(unittest.TestCase):
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_adentro_tablero(15,0, 0,5)
     
-    def val_movimiento_piezas(self):
-        pass
+    def val_movimiento_piezas_llamadas(self):
+        temp = None
+        self.tablerodeprueba[4][0] = self.tablerodeprueba[0][0]
+        self.tablerodeprueba[0][0] = temp
+
+        self.assertTrue(self.tablerodeprueba.val_mov_pieza(4,0, 5,0))
+        
+        with self.assertRaises(MovimientoErróneo):
+            self.tablerodeprueba.val_mov_pieza(4,0, 2,2)
+
+        
 if __name__ == '__main__':
     unittest.main()
