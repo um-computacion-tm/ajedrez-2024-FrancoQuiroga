@@ -40,16 +40,22 @@ class Test_Tablero_setup(unittest.TestCase):
             self.tablerodeprueba.val_adentro_tablero(0,4, 0,15)
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_adentro_tablero(15,0, 0,5)
-    
-    def val_movimiento_piezas_llamadas(self):
-        temp = None
-        self.tablerodeprueba[4][0] = self.tablerodeprueba[0][0]
-        self.tablerodeprueba[0][0] = temp
-
-        self.assertTrue(self.tablerodeprueba.val_mov_pieza(4,0, 5,0))
+    def test_val_movimiento_piezas_llamadas(self):
         
+        self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[0][0]
+        self.tablerodeprueba.__posiciones__[0][0] = None
+        self.assertTrue(self.tablerodeprueba.val_mov_pieza(4,0, 5,0))
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_mov_pieza(4,0, 2,2)
+    
+    def test_nosaltarpiezas(self):
+        self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[1][0]
+        self.tablerodeprueba.__posiciones__[1][0] = None
+        print(f'{self.tablerodeprueba.__posiciones__[1][0]}')
+        print(f'{self.tablerodeprueba.__posiciones__[4][0]}')
+        with self.assertRaises(MovimSaltaFicha):
+            self.tablerodeprueba.val_nosaltarpiezas(0,0, 5,0)
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,0, 3,0))
 
         
 if __name__ == '__main__':

@@ -25,6 +25,8 @@ class Tablero:
         self.__posiciones__[0][5] = Alfil('BLACK')
         self.__posiciones__[0][6] = Caballo('BLACK')
         self.__posiciones__[0][7] = Torre('BLACK')
+        for i in range(0,8):
+            self.__posiciones__[1][i] = Peon('BLACK')
 
 
 # Hardcode de las posiciones de las fichas blancas
@@ -36,7 +38,9 @@ class Tablero:
         self.__posiciones__[7][5] = Alfil('WHITE')
         self.__posiciones__[7][6] = Caballo('WHITE')
         self.__posiciones__[7][7] = Torre('WHITE')
-
+        for i in range(0,8):
+                    self.__posiciones__[6][i] = Peon('WHITE')
+    
     def obtn_pieza(self,fila,columna): #retorna un objeto o none
         return self.__posiciones__[fila][columna]
 
@@ -58,15 +62,21 @@ class Tablero:
                        hasta_fila:int,hasta_col:int)-> bool:
         if self.__posiciones__[desde_fila][desde_col].movimiento(desde_fila,desde_col,
             hasta_fila, hasta_col):
-            print('RETORNO TRUE')
             return True
         else: 
-            print('MOVIMIENTOERRONEO')
             raise MovimientoErróneo
         
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        pass
+        for puntero in range (hasta_fila-desde_fila):
+           if self.__posiciones__[puntero][desde_col].decircolor == \
+            self.__posiciones__[desde_fila][desde_col].decircolor:
+                raise MovimSaltaFicha
+                
+
+
+
+
     def pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col):
         pass
     def val_movimiento(self, desde_fila: int,desde_col:int, 
