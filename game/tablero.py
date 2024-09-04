@@ -68,10 +68,17 @@ class Tablero:
         
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        for puntero in range (hasta_fila-desde_fila):
+        colordeficha = self.__posiciones__[desde_fila][desde_col].decircolor
+        
+        for puntero in range (desde_fila+1,hasta_fila+1):
+           if self.__posiciones__[puntero][desde_col] is None:
+               continue
            if self.__posiciones__[puntero][desde_col].decircolor == \
-            self.__posiciones__[desde_fila][desde_col].decircolor:
+            colordeficha:
+                print(f'Esta es la iteración: {puntero}')
                 raise MovimSaltaFicha
+        else:
+            return True
                 
 
 

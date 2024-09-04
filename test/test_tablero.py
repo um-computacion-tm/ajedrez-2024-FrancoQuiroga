@@ -48,15 +48,24 @@ class Test_Tablero_setup(unittest.TestCase):
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_mov_pieza(4,0, 2,2)
     
-    def test_nosaltarpiezas(self):
+    def test_nosaltarpiezasvertical(self):
         self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[1][0]
         self.tablerodeprueba.__posiciones__[1][0] = None
-        print(f'{self.tablerodeprueba.__posiciones__[1][0]}')
-        print(f'{self.tablerodeprueba.__posiciones__[4][0]}')
+        
         with self.assertRaises(MovimSaltaFicha):
             self.tablerodeprueba.val_nosaltarpiezas(0,0, 5,0)
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,0, 3,0))
 
+    def test_nosaltarpiezaslateral(self):
+        self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[0][0]
+        self.tablerodeprueba.__posiciones__[0][0] = None
+        
+        self.tablerodeprueba.__posiciones__[4][6] = self.tablerodeprueba.__posiciones__[1][0]
+        self.tablerodeprueba.__posiciones__[1][0] = None
+        
+        with self.assertRaises(MovimSaltaFicha):
+            self.tablerodeprueba.val_nosaltarpiezas(0,0, 0,0)
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,0, 3,0))
         
 if __name__ == '__main__':
     unittest.main()
