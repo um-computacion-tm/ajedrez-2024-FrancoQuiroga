@@ -6,7 +6,7 @@ from game.reina import Reina
 from game.rey import Rey
 from game.excepciones import (NoPuedeatacar, MovimientoErróneo,
                         HayfichaAliada,MovimSaltaFicha,
-                        NoexisteFicha, FueraDelTablero)
+                        NoexisteFicha, FueraDelTablero,)
 
 class Tablero:
     def __init__(self) -> None:
@@ -70,13 +70,14 @@ class Tablero:
                        hasta_fila:int,hasta_col:int)-> bool:
         colordeficha = self.__posiciones__[desde_fila][desde_col].decircolor
         
-        for puntero in range (desde_fila+1,hasta_fila+1):
-           if self.__posiciones__[puntero][desde_col] is None:
+        for punteroverti in range (desde_fila+1,hasta_fila+1):
+           if self.__posiciones__[punteroverti][desde_col] is None:
                continue
-           if self.__posiciones__[puntero][desde_col].decircolor == \
+           if self.__posiciones__[punteroverti][desde_col].decircolor == \
             colordeficha:
-                print(f'Esta es la iteración: {puntero}')
+                #print(f'Esta es la iteración: {punteroverti}')
                 raise MovimSaltaFicha
+        
         else:
             return True
                 
@@ -84,8 +85,22 @@ class Tablero:
 
 
 
-    def pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col):
-        pass
+    def pieza_aliada(self,desde_fila,desde_col,hasta_fila,hasta_col):
+        try:
+            colorpiezainicial = self.__posiciones__[desde_fila][desde_col].decircolor
+            colorpiezafinal = self.__posiciones__[hasta_fila][hasta_col].decircolor
+        except AttributeError:
+            colorpiezafinal = None
+        if colorpiezafinal == None:
+            return True
+        if colorpiezainicial == colorpiezafinal:
+            raise HayfichaAliada
+        if colorpiezainicial != colorpiezafinal:
+            return True
+        
+
+
+
     def val_movimiento(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         # Validaciones a realizar:

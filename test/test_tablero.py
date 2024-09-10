@@ -67,5 +67,12 @@ class Test_Tablero_setup(unittest.TestCase):
             self.tablerodeprueba.val_nosaltarpiezas(0,0, 0,0)
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,0, 3,0))
         
+
+    def test_piezaaliada(self):
+        self.assertTrue(self.tablerodeprueba.pieza_aliada(0,0, 5,4))
+        with self.assertRaises(HayfichaAliada):
+            self.tablerodeprueba.pieza_aliada(0,0, 0,1)
+
+
 if __name__ == '__main__':
     unittest.main()
