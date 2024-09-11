@@ -66,7 +66,18 @@ class Test_Tablero_setup(unittest.TestCase):
         with self.assertRaises(MovimSaltaFicha):
             self.tablerodeprueba.val_nosaltarpiezas(0,0, 0,0)
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,0, 3,0))
+
+    def test_nosaltarpiezadiagonal(self):
+        self.tablerodeprueba.__posiciones__[4][4] = self.tablerodeprueba.__posiciones__[0][0]
+        self.tablerodeprueba.__posiciones__[0][0] = None
         
+        self.tablerodeprueba.__posiciones__[6][6] = self.tablerodeprueba.__posiciones__[1][0]
+        self.tablerodeprueba.__posiciones__[1][0] = None
+
+        with self.assertRaises(MovimSaltaFicha):
+            self.tablerodeprueba.val_nosaltarpiezas(4,4, 7,7)
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,0, 5,5))
+ 
 
     def test_piezaaliada(self):
         self.assertTrue(self.tablerodeprueba.pieza_aliada(0,0, 5,4))

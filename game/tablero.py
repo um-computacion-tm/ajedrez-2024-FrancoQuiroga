@@ -68,18 +68,26 @@ class Tablero:
         
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
+        
         colordeficha = self.__posiciones__[desde_fila][desde_col].decircolor
+        #Verificación Hor y Vert para reina,alfil,torre
+        #Verificación Diagonal para reina,alfil,torre
         
-        for punteroverti in range (desde_fila+1,hasta_fila+1):
-           if self.__posiciones__[punteroverti][desde_col] is None:
-               continue
-           if self.__posiciones__[punteroverti][desde_col].decircolor == \
-            colordeficha:
-                #print(f'Esta es la iteración: {punteroverti}')
-                raise MovimSaltaFicha
+        #verificación para peon que no pase sobre la pieza de adelante
+        #Verificar que si es  un caballo ignorar esta función
+
+
         
-        else:
-            return True
+        #for punteroverti in range (desde_fila+1,hasta_fila+1):
+        #   if self.__posiciones__[punteroverti][desde_col] is None:
+        #       continue
+        #   if self.__posiciones__[punteroverti][desde_col].decircolor == \
+        #    colordeficha:
+        #        #print(f'Esta es la iteración: {punteroverti}')
+        #        raise MovimSaltaFicha
+        #
+        #else:
+        #    return True
                 
 
 
