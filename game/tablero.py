@@ -7,7 +7,7 @@ from game.rey import Rey
 from game.excepciones import (NoPuedeatacar, MovimientoErróneo,
                         HayfichaAliada,MovimSaltaFicha,
                         NoexisteFicha, FueraDelTablero,)
-
+from math import sqrt
 class Tablero:
     def __init__(self) -> None:
         self.__posiciones__ = []
@@ -68,8 +68,27 @@ class Tablero:
         
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        
+        vectormovimiento = ((hasta_fila-desde_fila), (hasta_col-desde_fila))
         colordeficha = self.__posiciones__[desde_fila][desde_col].decircolor
+        filaiteradora = desde_fila
+        columnaiteradora = desde_col
+        multip = 1
+        multip_lat = 1
+        if desde_fila > hasta_fila:
+                multip = -1
+        if desde_col > hasta_col:
+                multip_lat = -1
+        
+        # Todo esto navega exclusivamente en diagonal
+        # Necesitaría un if (o una función distinta, si la complejidad lo permite),
+        #para verificar si el movimiento es horizontal/Vertical(y se ejecuta un código más sencillo)
+        #o para verificar si el movimiento es diagonal
+        
+                
+        
+        while (filaiteradora != hasta_fila) and (columnaiteradora != hasta_col):
+                filaiteradora += multip * 1
+                columnaiteradora += multip_lat * 1
         #Verificación Hor y Vert para reina,alfil,torre
         #Verificación Diagonal para reina,alfil,torre
         
@@ -112,6 +131,8 @@ class Tablero:
     def val_movimiento(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         # Validaciones a realizar:
+        
+
         esvalido = False
         lista_validaciones = [self.val_adentro_tablero(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_pieza_existe(desde_fila,desde_col,hasta_fila,hasta_col),
@@ -124,6 +145,11 @@ class Tablero:
                 return False
             else:
                 esvalido = True
+        # Si es un caballo ignorar la validacion de saltar las fichas
+        # Validar si un peon se mueve diagonalmente,
+        # que exite una ficha que ese peon pueda capturar
+        
+        # 0ero: Que el movimiento inicial no sea el mismo que el final
         # 1ero: Que la posición que se elige tenga una pieza.    
         # 2do: Que el movimiento no se salga del tablero.
         # 3ro: Que la pieza pueda hacer ese movimiento.
