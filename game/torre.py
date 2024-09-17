@@ -2,6 +2,8 @@ from game.piezas import Piezas
 class Torre(Piezas):
     def __init__(self, COLOR) -> None:
         super().__init__(COLOR)
+        self.white_str = '♜'
+        self.black_str = '♖'
 
     def movimiento(self,desde_fila:str,desde_col:str,
                    hasta_fila:str,hasta_col:str)->bool:
