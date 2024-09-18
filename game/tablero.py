@@ -68,8 +68,13 @@ class Tablero:
         
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        vectormovimiento = ((hasta_fila-desde_fila), (hasta_col-desde_fila))
-        colordeficha = self.__posiciones__[desde_fila][desde_col].decircolor
+        #vectormovimiento = ((hasta_fila-desde_fila), (hasta_col-desde_fila))
+        
+        ### Sección que verifica si es un caballo la ficha inicial o no
+        
+        if self.__posiciones__[desde_fila][hasta_fila] == isinstance(Caballo):
+            return True
+        ###
         filaiteradora = desde_fila
         columnaiteradora = desde_col
         multip = 1
@@ -84,29 +89,21 @@ class Tablero:
         #para verificar si el movimiento es horizontal/Vertical(y se ejecuta un código más sencillo)
         #o para verificar si el movimiento es diagonal
         
-                
+        ## Mov Vertical
+        while (filaiteradora != hasta_fila) and (columnaiteradora == hasta_col):
+            filaiteradora += multip * 1
+        ##
         
+        ## Mov Horizontal
+        while (filaiteradora == hasta_fila) and (columnaiteradora != hasta_col):
+            columnaiteradora += multip_lat * 1    
+        ##
+
+        ## Mov Diagonal
         while (filaiteradora != hasta_fila) and (columnaiteradora != hasta_col):
-                filaiteradora += multip * 1
-                columnaiteradora += multip_lat * 1
-        #Verificación Hor y Vert para reina,alfil,torre
-        #Verificación Diagonal para reina,alfil,torre
-        
-        #verificación para peon que no pase sobre la pieza de adelante
-        #Verificar que si es  un caballo ignorar esta función
-
-
-        
-        #for punteroverti in range (desde_fila+1,hasta_fila+1):
-        #   if self.__posiciones__[punteroverti][desde_col] is None:
-        #       continue
-        #   if self.__posiciones__[punteroverti][desde_col].decircolor == \
-        #    colordeficha:
-        #        #print(f'Esta es la iteración: {punteroverti}')
-        #        raise MovimSaltaFicha
-        #
-        #else:
-        #    return True
+            filaiteradora += multip * 1
+            columnaiteradora += multip_lat * 1
+        ## 
                 
 
 
@@ -134,7 +131,8 @@ class Tablero:
         
 
         esvalido = False
-        lista_validaciones = [self.val_adentro_tablero(desde_fila,desde_col,hasta_fila,hasta_col),
+        lista_validaciones = [self.val_mov_inicial(desde_fila,desde_col,hasta_fila,hasta_col),
+             self.val_adentro_tablero(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_pieza_existe(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_mov_pieza(desde_fila,desde_col,hasta_fila,hasta_col),
