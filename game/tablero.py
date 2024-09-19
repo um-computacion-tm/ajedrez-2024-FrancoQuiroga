@@ -72,8 +72,7 @@ class Tablero:
         
         ### Sección que verifica si es un caballo la ficha inicial o no
         
-        if  isinstance(self.__posiciones__[desde_fila][hasta_fila],Caballo):
-            print('ESTO ES UN PRINT VERIFICANDO QUE SE ENTRA A ESTE IF')
+        if  isinstance(self.__posiciones__[desde_fila][desde_col],Caballo):
             return True
         
         ###
@@ -109,7 +108,8 @@ class Tablero:
             try:
                 if self.__posiciones__[hasta_fila][columnaiteradora] is not None:
                     raise MovimSaltaFicha
-            except AttributeError:
+            except AttributeError as e:
+                print('ENTRA ALGUIEN?', e)
                 continue
         ##
 
@@ -123,8 +123,8 @@ class Tablero:
             except AttributeError:
                 continue
         ## 
-                
-        return True
+        else: return True        
+        
 
 
 

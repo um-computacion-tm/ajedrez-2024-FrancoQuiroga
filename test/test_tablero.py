@@ -53,6 +53,8 @@ class Test_Tablero_setup(unittest.TestCase):
     def test_nosaltarpiezasvertical(self):
         self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[1][0]
         self.tablerodeprueba.__posiciones__[1][0] = None
+        self.tablerodeprueba.__posiciones__[2][4] = self.tablerodeprueba.__posiciones__[1][4]
+        self.tablerodeprueba.val_nosaltarpiezas(4,4, 3,4)
         
         with self.assertRaises(MovimSaltaFicha):
             self.tablerodeprueba.val_nosaltarpiezas(0,0, 5,0)
@@ -68,6 +70,7 @@ class Test_Tablero_setup(unittest.TestCase):
         with self.assertRaises(MovimSaltaFicha):
             self.tablerodeprueba.val_nosaltarpiezas(4,0, 4,7)
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,0, 4,5))
+        
 
     def test_nosaltarpiezadiagonal(self):
         self.tablerodeprueba.__posiciones__[4][4] = self.tablerodeprueba.__posiciones__[0][0]
@@ -77,9 +80,11 @@ class Test_Tablero_setup(unittest.TestCase):
         self.tablerodeprueba.__posiciones__[1][0] = None
 
         with self.assertRaises(MovimSaltaFicha):
+            self.tablerodeprueba.val_nosaltarpiezas(4,4, 2,6)
             self.tablerodeprueba.val_nosaltarpiezas(4,4, 7,7)
+
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4, 5,5))
- 
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4,5,3 ))
 
     def test_piezaaliada(self):
         self.assertTrue(self.tablerodeprueba.pieza_aliada(0,0, 5,4))
@@ -87,10 +92,11 @@ class Test_Tablero_setup(unittest.TestCase):
             self.tablerodeprueba.pieza_aliada(0,0, 0,1)
 
     def test_nosaltarcaballo(self):
-        self.tablerodeprueba.__posiciones__[4][4] = self.tablerodeprueba.__posiciones__[0][1]
-        self.tablerodeprueba.__posiciones__[0][0] = None
-        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4, 5,5))
-
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,1, 2,2))
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,1, 2,0))
+        
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(7,6, 4,4))
+        
 
 if __name__ == '__main__':
     unittest.main()
