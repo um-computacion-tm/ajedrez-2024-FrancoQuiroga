@@ -18,3 +18,9 @@ class Piezas:
     @property
     def decircolor(self)-> str:
         return self.__color__
+    
+    def __str__(self) -> str:
+        if self.__color__ == 'WHITE':
+            return self.white_str
+        if self.__color__ == 'BLACK':
+            return self.black_str

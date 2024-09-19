@@ -5,6 +5,8 @@ from game.excepciones import (MovimientoErróneo, NoPuedeatacar)
 class Peon(Piezas):
     def __init__(self, COLOR) -> None:
         super().__init__(COLOR)
+        self.white_str = '♟'
+        self.black_str = '♙'
     def atacar(self,
                    desde_fila: int,desde_col: int
                    ,hasta_fila:int,hasta_col:int) -> bool :

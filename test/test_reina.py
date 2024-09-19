@@ -25,5 +25,8 @@ class Test_reina(unittest.TestCase):
         self.assertTrue(self.reina_prueba_negra.movimiento(4,4, 7,7))
         self.assertFalse(self.reina_prueba_negra.movimiento(1,1, 0,4))
         self.assertFalse(self.reina_prueba_negra.movimiento(4,4, 2,5))
+        
+
+
 if __name__ == '__main__':
     unittest.main()

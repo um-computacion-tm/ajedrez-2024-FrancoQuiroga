@@ -1,9 +1,17 @@
 # Usuario de github: FrancoQuiroga
-## [ Unreleased ] [ V 0.0.3] 2024/08/29:
+# Apellido y Nombre: Quiroga, Franco
+##  [ V 0.0.4] 2024/09/15:
+## Adiciones:
+- Funcion de validación de movimiento en el tablero
+- Verificaciones reglas del Ajedrez en el tablero [WIP]
+## Arreglos:
+- Funcion val_nosaltarfichas de la clase Tablero [WIP]
+
+##  [ V 0.0.3] 2024/08/29:
 ## Adiciones:
 - Clase Rey y su función de movimiento, incluyendo sus tests.
-- Verificaciones de movimientos en el tablero [ WIP ]
-- Verificaciones de reglas del ajedrez en el tablero [ WIP ]
+- Verificaciones de movimientos en el tablero
+- Verificaciones de reglas del ajedrez en el tablero
 
 
 ##  [V 0.0.2] 2024/08/15:
