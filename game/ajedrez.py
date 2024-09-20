@@ -14,22 +14,7 @@ class Ajedrez:
         try:
             self.__tablero__.val_movimiento(desde_fila,desde_col,
                                             hasta_fila,hasta_col)
-        except NoPuedeatacar:
-            return NoPuedeatacar
+        except Exception as e:
+            return e
         
-        except FueraDelTablero:
-            return FueraDelTablero
         
-        except NoexisteFicha:
-            return NoexisteFicha
-        
-        except HayfichaAliada:
-            return HayfichaAliada
-        
-        except MovimientoErróneo:
-            return MovimientoErróneo
-
-        except MovimSaltaFicha:
-            return MovimSaltaFicha
-
-

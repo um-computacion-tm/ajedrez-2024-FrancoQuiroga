@@ -65,10 +65,10 @@ class Tablero:
             return True
         else: 
             raise MovimientoErróneo
-        
+
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        #vectormovimiento = ((hasta_fila-desde_fila), (hasta_col-desde_fila))
+        
         
         ### Sección que verifica si es un caballo la ficha inicial o no
         
@@ -85,36 +85,17 @@ class Tablero:
                 multip = -1
         if desde_col > hasta_col:
                 multip_lat = -1
-        
+
+        if desde_fila == hasta_fila:
+            multip = 0
+        if desde_col == hasta_col:
+            multip_lat = 0
+
         # Todo esto navega exclusivamente en diagonal
         # Necesitaría un if (o una función distinta, si la complejidad lo permite),
         #para verificar si el movimiento es horizontal/Vertical(y se ejecuta un código más sencillo)
         #o para verificar si el movimiento es diagonal
-        
-        ## Mov Vertical
-        while (filaiteradora != hasta_fila) and (columnaiteradora == hasta_col):
-            filaiteradora += multip * 1
-            try:
-                if self.__posiciones__[filaiteradora][hasta_col] is not None:
-                    raise MovimSaltaFicha
-            
-            except AttributeError:
-                continue
-        ##
-        
-        ## Mov Horizontal
-        while (filaiteradora == hasta_fila) and (columnaiteradora != hasta_col):
-            columnaiteradora += multip_lat * 1    
-            try:
-                if self.__posiciones__[hasta_fila][columnaiteradora] is not None:
-                    raise MovimSaltaFicha
-            except AttributeError as e:
-                print('ENTRA ALGUIEN?', e)
-                continue
-        ##
-
-        ## Mov Diagonal
-        while (filaiteradora != hasta_fila) and (columnaiteradora != hasta_col):
+        while (filaiteradora != hasta_fila) or (columnaiteradora != hasta_col):
             filaiteradora += multip * 1
             columnaiteradora += multip_lat * 1
             try:
@@ -122,8 +103,9 @@ class Tablero:
                     raise MovimSaltaFicha
             except AttributeError:
                 continue
-        ## 
-        else: return True        
+        
+        else: return True 
+                
         
 
 
