@@ -96,7 +96,13 @@ class Test_Tablero_setup(unittest.TestCase):
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,1, 2,0))
         
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(7,6, 4,4))
-        
+class Test_tablero_movimiento(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tablerodeprueba = Tablero()
+
+    def test_moviento_inicial(self):
+        with self.assertRaises(MovimientoErróneo):
+            self.tablerodeprueba.val_mov_inicial(1,0,1,0)
 
 if __name__ == '__main__':
     unittest.main()

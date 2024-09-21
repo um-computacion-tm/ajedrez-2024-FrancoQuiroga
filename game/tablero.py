@@ -116,6 +116,7 @@ class Tablero:
             colorpiezafinal = self.__posiciones__[hasta_fila][hasta_col].decircolor
         except AttributeError:
             colorpiezafinal = None
+        
         if colorpiezafinal == None:
             return True
         if colorpiezainicial == colorpiezafinal:
@@ -123,7 +124,12 @@ class Tablero:
         if colorpiezainicial != colorpiezafinal:
             return True
         
-
+    def val_mov_inicial(self, desde_fila: int,desde_col:int, 
+                       hasta_fila:int,hasta_col:int)-> bool:
+        if desde_fila == hasta_fila:
+            if desde_col == hasta_col:
+                raise MovimientoErróneo
+        else: return True
 
 
     def val_movimiento(self, desde_fila: int,desde_col:int, 
@@ -144,7 +150,7 @@ class Tablero:
                 return False
             else:
                 esvalido = True
-        # Si es un caballo ignorar la validacion de saltar las fichas
+        # -----Si es un caballo ignorar la validacion de saltar las fichas
         # Validar si un peon se mueve diagonalmente,
         # que exite una ficha que ese peon pueda capturar
         
