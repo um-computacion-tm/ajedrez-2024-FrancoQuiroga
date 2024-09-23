@@ -103,6 +103,10 @@ class Test_tablero_movimiento(unittest.TestCase):
     def test_moviento_inicial(self):
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_mov_inicial(1,0,1,0)
+        self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,1,0))
+
+    def test_validacion_movimiento(self):
+        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
 
 if __name__ == '__main__':
     unittest.main()
