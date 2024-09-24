@@ -114,5 +114,6 @@ class Test_tablero_movimiento(unittest.TestCase):
 
         with self.assertRaises(NoPuedeatacar):
             self.tablerodeprueba.validar_atq_peon(6,6, 5,5)
+            self.tablerodeprueba.validar_atq_peon(7,3, 5,5)
 if __name__ == '__main__':
     unittest.main()
