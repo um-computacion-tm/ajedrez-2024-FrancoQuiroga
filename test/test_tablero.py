@@ -103,10 +103,16 @@ class Test_tablero_movimiento(unittest.TestCase):
     def test_moviento_inicial(self):
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_mov_inicial(1,0,1,0)
-        self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,1,0))
+        self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,2,0))
 
     def test_validacion_movimiento(self):
         self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
 
+    def test_validar_atq_peon(self):
+        self.tablerodeprueba.__posiciones__[5][1] = self.tablerodeprueba.__posiciones__[1][0]
+        self.assertTrue(self.tablerodeprueba.validar_atq_peon(6,0, 5,1))
+
+        with self.assertRaises(NoPuedeatacar):
+            self.tablerodeprueba.validar_atq_peon(6,6, 5,5)
 if __name__ == '__main__':
     unittest.main()

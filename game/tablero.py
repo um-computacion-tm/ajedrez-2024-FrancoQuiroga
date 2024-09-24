@@ -131,6 +131,21 @@ class Tablero:
                 raise MovimientoErróneo
         else: return True
 
+    def validar_atq_peon(self, desde_fila: int,desde_col:int, 
+                       hasta_fila:int,hasta_col:int)-> bool:
+        if isinstance(self.__posiciones__[desde_fila][desde_col], Peon):
+
+            if self.__posiciones__[desde_fila][desde_col].atacar(desde_fila,
+            desde_col,hasta_fila,hasta_col):
+                try:
+                    if self.__posiciones__[desde_fila][desde_col].decircolor != \
+                        self.__posiciones__[hasta_fila][hasta_col].decircolor:
+                        return True
+                    else: raise NoPuedeatacar
+                except AttributeError:
+                    raise NoPuedeatacar 
+            else: raise NoPuedeatacar
+
 
     def val_movimiento(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
