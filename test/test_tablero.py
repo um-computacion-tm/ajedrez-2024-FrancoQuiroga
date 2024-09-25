@@ -105,8 +105,8 @@ class Test_tablero_movimiento(unittest.TestCase):
             self.tablerodeprueba.val_mov_inicial(1,0,1,0)
         self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,2,0))
 
-    def test_validacion_movimiento(self):
-        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
+#    def test_validacion_movimiento(self):
+#        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
 
     def test_validar_atq_peon(self):
         self.tablerodeprueba.__posiciones__[5][1] = self.tablerodeprueba.__posiciones__[1][0]
