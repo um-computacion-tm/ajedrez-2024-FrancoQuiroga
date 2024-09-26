@@ -12,7 +12,11 @@ class Peon(Piezas):
                    ,hasta_fila:int,hasta_col:int) -> bool :
         """ Método usado para verificar si el peón 
         puede atacar diagonalmente
-        Solo lo puede usar el tablero
+        Solo lo puede usar el tablero, ya que esta clase
+        no conoce el estado del tablero, por lo que no
+        puede verificar si hay una ficha en la diagonal 
+        que ataca.
+        
         Parametros
         --------
 
@@ -106,9 +110,9 @@ class Peon(Piezas):
         if self.movimientoinicial(desde_fila,desde_col,
                                  hasta_fila,hasta_col):
              return True
-        if self.atacar(desde_fila,desde_col,
-                                 hasta_fila,hasta_col):
-             return True
+        #if self.atacar(desde_fila,desde_col,
+        #                         hasta_fila,hasta_col):
+        #     return True
         else: return False
              
 

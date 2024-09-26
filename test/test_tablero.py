@@ -38,10 +38,20 @@ class Test_Tablero_setup(unittest.TestCase):
 
     def test_validar_adentro_tablero(self):
         self.assertTrue(self.tablerodeprueba.val_adentro_tablero(0,4, 0,5))
+        
         with self.assertRaises(FueraDelTablero):
-            self.tablerodeprueba.val_adentro_tablero(0,4, 0,15)
-        with self.assertRaises(MovimientoErróneo):
+            
             self.tablerodeprueba.val_adentro_tablero(15,0, 0,5)
+
+        with self.assertRaises(FueraDelTablero):
+            #ipdb.set_trace()
+            self.tablerodeprueba.val_adentro_tablero(0,4, 0,15)
+        
+        
+        with self.assertRaises(FueraDelTablero):
+            self.tablerodeprueba.val_adentro_tablero(-15,0, 0,5)
+
+        self.assertTrue(self.tablerodeprueba.val_adentro_tablero(7,7, 0,0))
     def test_val_movimiento_piezas_llamadas(self):
         
         self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[0][0]
@@ -104,14 +114,15 @@ class Test_tablero_movimiento(unittest.TestCase):
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_mov_inicial(1,0,1,0)
         self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,2,0))
-
-#    def test_validacion_movimiento(self):
-#        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
-
+        self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,1,2))
+    def test_validacion_movimiento(self):
+        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
+        with self.assertRaises(FueraDelTablero):
+            self.tablerodeprueba.val_movimiento(1,1, 15,1)
     def test_validar_atq_peon(self):
         self.tablerodeprueba.__posiciones__[5][1] = self.tablerodeprueba.__posiciones__[1][0]
         self.assertTrue(self.tablerodeprueba.validar_atq_peon(6,0, 5,1))
-
+        self.assertTrue(self.tablerodeprueba.validar_atq_peon(6,0, 5,0))
         with self.assertRaises(NoPuedeatacar):
             self.tablerodeprueba.validar_atq_peon(6,6, 5,5)
             self.tablerodeprueba.validar_atq_peon(7,3, 5,5)

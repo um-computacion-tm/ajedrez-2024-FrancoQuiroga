@@ -53,11 +53,17 @@ class Tablero:
         
     def val_adentro_tablero(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
-        if 0< desde_fila or desde_col >= 8:
-            raise MovimientoErróneo
-        if hasta_fila or hasta_col >= 8:
+        if  (desde_fila or desde_col) > 7:
+            raise FueraDelTablero
+        if  (hasta_fila or hasta_col) > 7:
+            raise FueraDelTablero
+        
+        if 0 > (hasta_fila or hasta_col):
+            raise FueraDelTablero
+        if 0 > (desde_fila or desde_col):
             raise FueraDelTablero
         else: return True
+
     def val_mov_pieza(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         if self.__posiciones__[desde_fila][desde_col].movimiento(desde_fila,desde_col,
@@ -129,6 +135,8 @@ class Tablero:
         if desde_fila == hasta_fila:
             if desde_col == hasta_col:
                 raise MovimientoErróneo
+            else:
+                return True
         else: return True
 
     def validar_atq_peon(self, desde_fila: int,desde_col:int, 
@@ -144,7 +152,7 @@ class Tablero:
                     else: raise NoPuedeatacar
                 except AttributeError:
                     raise NoPuedeatacar 
-            else: raise NoPuedeatacar
+            else: return True
 
 
     def val_movimiento(self, desde_fila: int,desde_col:int, 
@@ -158,22 +166,25 @@ class Tablero:
                             self.val_pieza_existe(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_mov_pieza(desde_fila,desde_col,hasta_fila,hasta_col),
-                            self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),]
+                            self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),
+                            self.validar_atq_peon(desde_fila,desde_col,hasta_fila,hasta_col)]
+        print('Lista de validaciones: ',lista_validaciones)
         for validacion in lista_validaciones:
             esvalido = validacion
-            if esvalido == False:
-                return False
+            if esvalido == True:
+                continue
             else:
-                esvalido = True
+                esvalido = False
+        return esvalido
         # -----Si es un caballo ignorar la validacion de saltar las fichas
         # Validar si un peon se mueve diagonalmente,
         # que exite una ficha que ese peon pueda capturar
         
-        # 0ero: Que el movimiento inicial no sea el mismo que el final
-        # 1ero: Que la posición que se elige tenga una pieza.    
-        # 2do: Que el movimiento no se salga del tablero.
-        # 3ro: Que la pieza pueda hacer ese movimiento.
-        # 4to: Que la pieza no tenga piezas entre la pos_inicial
-        # y la posición final.
+        # -----0ero: Que el movimiento inicial no sea el mismo que el final
+        # -----1ero: Que la posición que se elige tenga una pieza.    
+        # -----2do: Que el movimiento no se salga del tablero.
+        # -----3ro: Que la pieza pueda hacer ese movimiento.
+        # -----4to: Que la pieza no tenga piezas entre la pos_inicial
+        #------ y la posición final.
         # 5to: Que el movimiento final no tenga una pieza del mismo color
         
