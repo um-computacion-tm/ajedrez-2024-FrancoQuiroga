@@ -6,7 +6,7 @@ from game.reina import Reina
 from game.rey import Rey
 from game.excepciones import (NoPuedeatacar, MovimientoErróneo,
                         HayfichaAliada,MovimSaltaFicha,
-                        NoexisteFicha, FueraDelTablero,)
+                        NoexisteFicha, FueraDelTablero,FichaAjena)
 from math import sqrt
 class Tablero:
     def __init__(self) -> None:
@@ -101,12 +101,16 @@ class Tablero:
         # Necesitaría un if (o una función distinta, si la complejidad lo permite),
         #para verificar si el movimiento es horizontal/Vertical(y se ejecuta un código más sencillo)
         #o para verificar si el movimiento es diagonal
-        while (filaiteradora != hasta_fila) or (columnaiteradora != hasta_col):
+        while (filaiteradora != (hasta_fila)) or (columnaiteradora != (hasta_col)):
             filaiteradora += multip * 1
             columnaiteradora += multip_lat * 1
+            if (filaiteradora == hasta_fila) and (columnaiteradora == hasta_col):
+                return True
+            
             try:
                 if self.__posiciones__[filaiteradora][columnaiteradora] is not None:
                     raise MovimSaltaFicha
+                
             except AttributeError:
                 continue
         
@@ -153,14 +157,35 @@ class Tablero:
                 except AttributeError:
                     raise NoPuedeatacar 
             else: return True
+    def capturar_pieza(self,desde_fila,desde_col, hasta_fila, hasta_col):
+        
+        ficha_capturada = self.__posiciones__[hasta_fila][hasta_col]
+        self.__posiciones__[hasta_fila][hasta_col] = self.__posiciones__[desde_fila][desde_col]
+        self.__posiciones__[desde_fila][desde_col] = None
+        return ficha_capturada
 
+    def verificar_jugador(self,desde_fila: int,desde_col:int, 
+                       hasta_fila:int,hasta_col:int,color_jugador):
+        if self.__posiciones__[desde_fila][desde_col].decircolor == color_jugador:
+            return True
+        else:
+            raise FichaAjena
 
     def val_movimiento(self, desde_fila: int,desde_col:int, 
-                       hasta_fila:int,hasta_col:int)-> bool:
+                       hasta_fila:int,hasta_col:int,color_player)-> bool:
+        """Método usado por clase Ajedrez
+        
+        Combina todas las posibles verificaciones que hay que 
+        realizar para un funcionamiento normal de ajedrez
+        (Este método no hace chequeos de checkmate[WIP?])
+        
+        Parámetros:
+        desde_(fila/col): entero, entre 0 y 7, posición de origen delm movimiento
+
+        hasta_(fila/col): entero, entre 0 y 7, posición final del movimiento
+        """
         # Validaciones a realizar:
         
-
-        esvalido = False
         lista_validaciones = [self.val_mov_inicial(desde_fila,desde_col,hasta_fila,hasta_col),
              self.val_adentro_tablero(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_pieza_existe(desde_fila,desde_col,hasta_fila,hasta_col),
@@ -168,17 +193,17 @@ class Tablero:
                             self.val_mov_pieza(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.validar_atq_peon(desde_fila,desde_col,hasta_fila,hasta_col)]
-        print('Lista de validaciones: ',lista_validaciones)
-        for validacion in lista_validaciones:
-            esvalido = validacion
-            if esvalido == True:
-                continue
-            else:
-                esvalido = False
-        return esvalido
+        return True
+        
+        
+        
+        
+        
+        # Verificar si el jugador correcto 
+        # puede mover la ficha correcta
         # -----Si es un caballo ignorar la validacion de saltar las fichas
-        # Validar si un peon se mueve diagonalmente,
-        # que exite una ficha que ese peon pueda capturar
+        # -----Validar si un peon se mueve diagonalmente,
+        # -----que exite una ficha que ese peon pueda capturar
         
         # -----0ero: Que el movimiento inicial no sea el mismo que el final
         # -----1ero: Que la posición que se elige tenga una pieza.    
@@ -186,5 +211,5 @@ class Tablero:
         # -----3ro: Que la pieza pueda hacer ese movimiento.
         # -----4to: Que la pieza no tenga piezas entre la pos_inicial
         #------ y la posición final.
-        # 5to: Que el movimiento final no tenga una pieza del mismo color
+        #------ 5to: Que el movimiento final no tenga una pieza del mismo color
         
