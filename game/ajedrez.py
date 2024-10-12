@@ -34,7 +34,7 @@ class Ajedrez:
                 return True
                  
             #VERIFICAR QUE EL JUGADOR BLANCO NO PUEDA
-            #MOVER FICHAS
+            #MOVER FICHAS NEGRAS
 
         except Exception as e:
             raise e

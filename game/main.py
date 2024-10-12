@@ -23,9 +23,10 @@ def play(ajedrez):
             desde_fila = int(input('Ingrese la fila: '))
             desde_col  = int(input('Ingrese la columna: '))
             print('Elija la posicion a donde mover la ficha')
-            hasta_fila = int(input('Ingrese la fila: ')) 
-            hasta_col = int(input('Ingrese la columna: '))
+            hasta_fila = int(input('Ingrese la fila objetivo: ')) 
+            hasta_col = int(input('Ingrese la columna objetivo: '))
 
+            ajedrez.traducir_posiciones(desde_fila,desde_col,hasta_fila,hasta_col)
 
         except ValueError:
             print('Elija un número correcto')

@@ -13,7 +13,7 @@ class Test_inicial_Ajedrez(unittest.TestCase):
 
     def test_mover(self):
         
-        
+        self.ajedrezdeprueba.__turno__ = 'BLACK'
         self.assertTrue(self.ajedrezdeprueba.mover(1,1,2,1))
         
         
@@ -32,6 +32,7 @@ class Test_inicial_Ajedrez(unittest.TestCase):
 
         self.assertTrue(self.ajedrezdeprueba.mover(7,0, 0,0))
         self.ajedrezdeprueba.__tablero__.__posiciones__[7][0] = self.ajedrezdeprueba.__tablero__.__posiciones__[1][1]
+        self.ajedrezdeprueba.__turno__ = 'WHITE'
         self.assertTrue(self.ajedrezdeprueba.mover(0,0, 7,0))
 
      

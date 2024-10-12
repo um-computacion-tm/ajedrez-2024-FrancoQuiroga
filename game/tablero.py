@@ -172,7 +172,7 @@ class Tablero:
             raise FichaAjena
 
     def val_movimiento(self, desde_fila: int,desde_col:int, 
-                       hasta_fila:int,hasta_col:int,color_player)-> bool:
+                       hasta_fila:int,hasta_col:int,color_player:str)-> bool:
         """Método usado por clase Ajedrez
         
         Combina todas las posibles verificaciones que hay que 
@@ -183,16 +183,19 @@ class Tablero:
         desde_(fila/col): entero, entre 0 y 7, posición de origen delm movimiento
 
         hasta_(fila/col): entero, entre 0 y 7, posición final del movimiento
+
+        color_player: string, tiene que ser exclusivamente o 'WHITE' o 'BLACK' 
         """
         # Validaciones a realizar:
         
         lista_validaciones = [self.val_mov_inicial(desde_fila,desde_col,hasta_fila,hasta_col),
              self.val_adentro_tablero(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_pieza_existe(desde_fila,desde_col,hasta_fila,hasta_col),
+                            self.verificar_jugador(desde_fila,desde_col,hasta_fila,hasta_col,color_player),
                             self.pieza_aliada(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_mov_pieza(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),
-                            self.validar_atq_peon(desde_fila,desde_col,hasta_fila,hasta_col)]
+                            self.validar_atq_peon(desde_fila,desde_col,hasta_fila,hasta_col),]
         return True
         
         

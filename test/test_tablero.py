@@ -135,7 +135,7 @@ class Test_tablero_movimiento(unittest.TestCase):
             self.tablerodeprueba.validar_atq_peon(1,0, 2,1)
 
     def test_validacion_movimiento(self):
-        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1,'WHITE'))
+        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1,'BLACK'))
 
         with self.assertRaises(FueraDelTablero):
             self.tablerodeprueba.val_movimiento(1,1, 15,1,'WHITE')
@@ -155,6 +155,8 @@ class Test_tablero_movimiento(unittest.TestCase):
 
     def test_verificar_jugador(self):
         self.assertTrue(self.tablerodeprueba.verificar_jugador(0,0,0,0, 'BLACK'))
+        with self.assertRaises(FichaAjena):
+            self.tablerodeprueba.verificar_jugador(0,0,0,0, 'WHITE')
 
         with self.assertRaises(FichaAjena):
             self.tablerodeprueba.verificar_jugador(0,0,0,0, 'WHITE')
