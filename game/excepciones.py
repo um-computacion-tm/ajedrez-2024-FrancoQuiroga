@@ -18,7 +18,8 @@ class MovimientoErróneo(Exception):
     porque es un mov inválido. 
     """
     ...
-
+class FichaAjena(MovimientoErróneo):
+    ...
 class HayfichaAliada(MovimientoErróneo):
     ...
 

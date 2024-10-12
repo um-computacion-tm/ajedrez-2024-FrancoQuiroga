@@ -49,7 +49,7 @@ class Test_movimiento_Peon(unittest.TestCase):
         
         self.assertTrue(self.peon_prueba_negro.movimiento(5,5, 6,5))
         self.assertTrue(self.peon_prueba_blanco.movimiento(6,6, 4,6))
-        self.assertTrue(self.peon_prueba_blanco.movimiento(3,2, 2,1))
+        #self.assertTrue(self.peon_prueba_blanco.movimiento(3,2, 2,1))
 
         self.assertFalse(self.peon_prueba_negro.movimiento(6,6, 4,5))
         

@@ -1,5 +1,9 @@
 # Usuario de github: FrancoQuiroga
 # Apellido y Nombre: Quiroga, Franco
+## [ V 0.0.5] 2024/09/26:
+## Arreglos:
+- Funcion de validar_movimiento casi completa, y testeada
+
 ##  [ V 0.0.4] 2024/09/15:
 ## Adiciones:
 - Funcion de validación de movimiento en el tablero

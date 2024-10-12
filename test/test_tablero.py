@@ -2,8 +2,10 @@ from game.tablero import (Tablero)
 from game.torre import Torre
 from game.excepciones import (NoPuedeatacar, MovimientoErróneo,
                                HayfichaAliada,MovimSaltaFicha, 
-                               NoexisteFicha, FueraDelTablero)
+                               NoexisteFicha, FueraDelTablero,
+                               FichaAjena)
 from game.caballo import Caballo
+from game.reina import Reina
 import unittest
 
 
@@ -38,10 +40,22 @@ class Test_Tablero_setup(unittest.TestCase):
 
     def test_validar_adentro_tablero(self):
         self.assertTrue(self.tablerodeprueba.val_adentro_tablero(0,4, 0,5))
+        
         with self.assertRaises(FueraDelTablero):
-            self.tablerodeprueba.val_adentro_tablero(0,4, 0,15)
-        with self.assertRaises(MovimientoErróneo):
+            
             self.tablerodeprueba.val_adentro_tablero(15,0, 0,5)
+
+        with self.assertRaises(FueraDelTablero):
+            #ipdb.set_trace()
+            self.tablerodeprueba.val_adentro_tablero(0,4, 0,15)
+        
+        
+        with self.assertRaises(FueraDelTablero):
+            self.tablerodeprueba.val_adentro_tablero(-15,0, 0,5)
+        with self.assertRaises(FueraDelTablero):
+            self.tablerodeprueba.val_adentro_tablero(1,0, 0,-5)
+
+        self.assertTrue(self.tablerodeprueba.val_adentro_tablero(7,7, 0,0))
     def test_val_movimiento_piezas_llamadas(self):
         
         self.tablerodeprueba.__posiciones__[4][0] = self.tablerodeprueba.__posiciones__[0][0]
@@ -85,11 +99,14 @@ class Test_Tablero_setup(unittest.TestCase):
 
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4, 5,5))
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4,5,3 ))
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4,6,6 ))
 
     def test_piezaaliada(self):
         self.assertTrue(self.tablerodeprueba.pieza_aliada(0,0, 5,4))
         with self.assertRaises(HayfichaAliada):
             self.tablerodeprueba.pieza_aliada(0,0, 0,1)
+        self.tablerodeprueba.__posiciones__[1][0] = None
+        self.assertTrue(self.tablerodeprueba.pieza_aliada(0,0, 6,0))
 
     def test_nosaltarcaballo(self):
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(0,1, 2,2))
@@ -104,16 +121,46 @@ class Test_tablero_movimiento(unittest.TestCase):
         with self.assertRaises(MovimientoErróneo):
             self.tablerodeprueba.val_mov_inicial(1,0,1,0)
         self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,2,0))
-
-#    def test_validacion_movimiento(self):
-#        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1))
-
+        self.assertTrue(self.tablerodeprueba.val_mov_inicial(1,0,1,2))
     def test_validar_atq_peon(self):
         self.tablerodeprueba.__posiciones__[5][1] = self.tablerodeprueba.__posiciones__[1][0]
         self.assertTrue(self.tablerodeprueba.validar_atq_peon(6,0, 5,1))
-
+        self.assertTrue(self.tablerodeprueba.validar_atq_peon(6,0, 5,0))
         with self.assertRaises(NoPuedeatacar):
             self.tablerodeprueba.validar_atq_peon(6,6, 5,5)
             self.tablerodeprueba.validar_atq_peon(7,3, 5,5)
+
+        self.tablerodeprueba.__posiciones__[2][1] = self.tablerodeprueba.__posiciones__[0][0]
+        with self.assertRaises(NoPuedeatacar):
+            self.tablerodeprueba.validar_atq_peon(1,0, 2,1)
+
+    def test_validacion_movimiento(self):
+        self.assertTrue(self.tablerodeprueba.val_movimiento(1,1, 2,1,'BLACK'))
+
+        with self.assertRaises(FueraDelTablero):
+            self.tablerodeprueba.val_movimiento(1,1, 15,1,'WHITE')
+#        import ipdb
+        with self.assertRaises(MovimSaltaFicha):
+#            ipdb.set_trace()
+            self.tablerodeprueba.val_movimiento(0,0, 5,0,'BLACK')
+    def test_capturar_pieza(self):
+        self.assertIsInstance(self.tablerodeprueba.capturar_pieza(0,0,7,4), Reina)
+        self.assertEqual(self.tablerodeprueba.__posiciones__[0][0], None)
+        self.assertIsInstance(self.tablerodeprueba.__posiciones__[7][4], Torre)
+    def test_capturar_pieza_lugarvacio(self):
+        
+        self.assertIsNone(self.tablerodeprueba.capturar_pieza(0,0,4,4))
+        self.assertIsInstance(self.tablerodeprueba.__posiciones__[4][4], Torre)
+        self.assertIsNone(self.tablerodeprueba.__posiciones__[0][0])
+
+    def test_verificar_jugador(self):
+        self.assertTrue(self.tablerodeprueba.verificar_jugador(0,0,0,0, 'BLACK'))
+        with self.assertRaises(FichaAjena):
+            self.tablerodeprueba.verificar_jugador(0,0,0,0, 'WHITE')
+
+        with self.assertRaises(FichaAjena):
+            self.tablerodeprueba.verificar_jugador(0,0,0,0, 'WHITE')
+
+
 if __name__ == '__main__':
     unittest.main()
