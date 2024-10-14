@@ -5,10 +5,12 @@
 - Funcion que traduce las posiciones que completa el usuario
 con datos usables por el tablero
 - Funciones en main que le piden informacion a la clase ajedrez
+- Métodos en ajedrez para devolver las piezas capturadas durante el juego
 
 ## Arreglos:
 - Funcion validar_movimiento terminada, y agregada la verificación
 que valida que el usuario sea del mismo color con la ficha
+- Las excepciones ahora tienen un comentario asociado, que es utilizado en main para comunicarle al jugador que error cometió
 
 ## [ V 0.0.5] 2024/09/26:
 ## Arreglos:
