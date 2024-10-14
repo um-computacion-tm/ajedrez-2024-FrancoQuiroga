@@ -1,5 +1,6 @@
 import unittest
 from game.ajedrez import Ajedrez
+from unittest.mock import patch
 from game.excepciones import (MovimientoErróneo,MovimSaltaFicha,
                              NoexisteFicha,NoPuedeatacar,FueraDelTablero,
                              HayfichaAliada)
@@ -53,7 +54,31 @@ class Test_inicial_Ajedrez(unittest.TestCase):
         self.assertEqual((0,0,6,5),self.ajedrezdeprueba.traducir_posiciones(8,'A',2,'F'))
         with self.assertRaises(KeyError):
             self.ajedrezdeprueba.traducir_posiciones(8,'A',2,'Z')
+    @patch('builtins.print')
+    def test_listablancas(self,mock_print):
+        self.ajedrezdeprueba.__listacapturadasporblanco__ = ['a','b','c']
+        self.ajedrezdeprueba.listar_blancas
+        mock_print.assert_called()
+    
+    @patch('builtins.print')
+    def test_listanegras(self,mock_print):
+        self.ajedrezdeprueba.__listacapturadaspornegro__ = ['a','b','c']
+        self.ajedrezdeprueba.listar_negras
+        mock_print.assert_called()
 
+    def test_decir_turno(self):
+        self.assertEqual(self.ajedrezdeprueba.decir_turno,'WHITE')
+        self.ajedrezdeprueba.__turno__ = 'BLACK'
+        self.assertEqual(self.ajedrezdeprueba.decir_turno,'BLACK')
+
+    def test_longitudlist_blanca(self):
+        self.ajedrezdeprueba.__listacapturadasporblanco__ = ['a','b','c']
+        self.assertEqual(3,self.ajedrezdeprueba.longitud_lista_blancas)
+
+
+    def test_longitudlist_negra(self):
+        self.ajedrezdeprueba.__listacapturadaspornegro__ = ['a','b','c']
+        self.assertEqual(3,self.ajedrezdeprueba.longitud_lista_negras)
 
 if __name__ == '__main__':
     unittest.main()

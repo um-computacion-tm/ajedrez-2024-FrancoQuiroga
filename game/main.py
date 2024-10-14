@@ -16,10 +16,10 @@ def turno_actual(ajedrez):
 
 def verificar_ganador(ajedrez):
     #Si alguno de los jugadores tiene 16 piezas, gana automaticamente
-    if len(ajedrez.lista_negras) == 16:
+    if ajedrez.longitud_lista_negras == 16:
         return False
     
-    if len(ajedrez.lista_blancas) == 16:
+    if ajedrez.longitud_lista_blancas == 16:
         return True
     
 def play(ajedrez):
@@ -36,7 +36,7 @@ def play(ajedrez):
             hasta_col = str(input('Ingrese la columna objetivo: '))
             desde_col = hasta_col.upper()
             hasta_col = hasta_col.upper()
-            ajedrez.traducir_posiciones(desde_fila,desde_col,hasta_fila,hasta_col)
+            movimiento = ajedrez.traducir_posiciones(desde_fila,desde_col,hasta_fila,hasta_col)
 
         except ValueError:
             print('Elija un número correcto')
@@ -45,7 +45,14 @@ def play(ajedrez):
         except KeyError:
             print('Elija una fila de 1-8 y una columna de A-H')
             continue
-    
+        
+        try:
+            desde_fila,desde_col,hasta_fila,hasta_col = movimiento
+            ajedrez.mover(desde_fila,desde_col,hasta_fila,hasta_col)
+        except Exception as e:
+              print(e)
+              continue
+        
 def main():
     ajedrez = Ajedrez()
     jugar = play(ajedrez)

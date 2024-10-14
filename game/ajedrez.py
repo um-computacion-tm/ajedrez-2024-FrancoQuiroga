@@ -36,22 +36,29 @@ class Ajedrez:
             #VERIFICAR QUE EL JUGADOR BLANCO NO PUEDA --------
             #MOVER FICHAS NEGRAS -------
 
-        except Exception as e:
-            raise e
+        except :
+            raise 
     @property
     def decir_turno(self):
         return self.__turno__
+    
     @property
-    def lista_blancas(self):
+    def longitud_lista_blancas(self):
+        return len(self.__listacapturadasporblanco__)
+    @property
+    def longitud_lista_negras(self):
+        return len(self.__listacapturadaspornegro__)
+    
+    
+    @property
+    def listar_blancas(self):
         for i in self.__listacapturadasporblanco__:
             print(i, end=' ')
-            return self.__listacapturadasporblanco__
-
     @property
-    def lista_negras(self):
+    def listar_negras(self):
         for i in self.__listacapturadaspornegro__:
             print(i, end=' ')
-            return self.__listacapturadaspornegro__
+        
 
     def traducir_posiciones(self,desde_fila:int,desde_col:str
                             ,hasta_fila:int,hasta_col:str):
