@@ -33,11 +33,43 @@ class Ajedrez:
                 self.__turno__ = 'WHITE'
                 return True
                  
-            #VERIFICAR QUE EL JUGADOR BLANCO NO PUEDA
-            #MOVER FICHAS NEGRAS
+            #VERIFICAR QUE EL JUGADOR BLANCO NO PUEDA --------
+            #MOVER FICHAS NEGRAS -------
 
         except Exception as e:
             raise e
+    @property
+    def decir_turno(self):
+        return self.__turno__
+    @property
+    def lista_blancas(self):
+        for i in self.__listacapturadasporblanco__:
+            print(i, end=' ')
+            return self.__listacapturadasporblanco__
+
+    @property
+    def lista_negras(self):
+        for i in self.__listacapturadaspornegro__:
+            print(i, end=' ')
+            return self.__listacapturadaspornegro__
+
+    def traducir_posiciones(self,desde_fila:int,desde_col:str
+                            ,hasta_fila:int,hasta_col:str):
+        """Método usado por main, para traducir las direcciones del usuario
+        en direcciones usables por el tablero
         
-    #def listacapturadas
+        Parámetros:
+        (desde/hasta)_col: str, mayúscula de la A-H, 
+
+        (desde/hasta)_fila: entero, entre 0 y 7, posición final del movimiento
+
+
+        """
+
+        diccionario_filas = {8:0,7:1,6:2,5:3,
+                             4:4,3:5,2:6,1:7}
         
+        diccionario_col = {'A':0,'B':1,'C':2,'D':3,
+                           'E':4,'F':5,'G':6,'H':7}
+
+        return diccionario_filas[desde_fila],diccionario_col[desde_col],diccionario_filas[hasta_fila],diccionario_col[hasta_col]

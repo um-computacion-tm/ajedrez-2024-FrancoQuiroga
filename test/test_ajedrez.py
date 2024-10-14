@@ -26,15 +26,34 @@ class Test_inicial_Ajedrez(unittest.TestCase):
 
         self.assertEqual(len(self.ajedrezdeprueba.__listacapturadaspornegro__),0)
 
-    def test_mover_capturapieza(self):
+    def test_mover_capturapiezablanca(self):
         self.ajedrezdeprueba.__tablero__.__posiciones__[1][0] = None
         self.ajedrezdeprueba.__tablero__.__posiciones__[6][0] = None
-
+        
         self.assertTrue(self.ajedrezdeprueba.mover(7,0, 0,0))
+        
         self.ajedrezdeprueba.__tablero__.__posiciones__[7][0] = self.ajedrezdeprueba.__tablero__.__posiciones__[1][1]
         self.ajedrezdeprueba.__turno__ = 'WHITE'
         self.assertTrue(self.ajedrezdeprueba.mover(0,0, 7,0))
+        # Checkea la lista de capturadas para validar el movimiento
+        self.assertEqual(2,len(self.ajedrezdeprueba.__listacapturadasporblanco__))
 
-     
+    def test_capturarpiezanegra(self):
+        self.ajedrezdeprueba.__tablero__.__posiciones__[1][0] = None
+        self.ajedrezdeprueba.__tablero__.__posiciones__[6][0] = None
+
+        self.ajedrezdeprueba.__turno__ = 'BLACK'
+        self.assertTrue(self.ajedrezdeprueba.mover(0,0, 7,0))
+        self.ajedrezdeprueba.__tablero__.__posiciones__[7][0] = self.ajedrezdeprueba.__tablero__.__posiciones__[1][1]
+        # Checkea la lista de capturadas para validar el movimiento
+        self.assertEqual(1,len(self.ajedrezdeprueba.__listacapturadaspornegro__))
+    
+    def test_traducir_posiciones(self):
+        self.assertEqual(4,len(self.ajedrezdeprueba.traducir_posiciones(8,'A',2,'F')))
+        self.assertEqual((0,0,6,5),self.ajedrezdeprueba.traducir_posiciones(8,'A',2,'F'))
+        with self.assertRaises(KeyError):
+            self.ajedrezdeprueba.traducir_posiciones(8,'A',2,'Z')
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,15 @@
 # Usuario de github: FrancoQuiroga
 # Apellido y Nombre: Quiroga, Franco
+## [ V 0.0.6] 2024/10/14:
+## Adiciones:
+- Funcion que traduce las posiciones que completa el usuario
+con datos usables por el tablero
+- Funciones en main que le piden informacion a la clase ajedrez
+
+## Arreglos:
+- Funcion validar_movimiento terminada, y agregada la verificación
+que valida que el usuario sea del mismo color con la ficha
+
 ## [ V 0.0.5] 2024/09/26:
 ## Arreglos:
 - Funcion de validar_movimiento casi completa, y testeada
