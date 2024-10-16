@@ -48,21 +48,21 @@ class Tablero:
     def val_pieza_existe(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         if self.__posiciones__[desde_fila][desde_col] is None:
-            raise NoexisteFicha('No hay ninguna ficha en la posicion inicial')
+            raise NoexisteFicha('ERROR: No hay ninguna ficha en la posicion inicial')
         else:
             return True
         
     def val_adentro_tablero(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         if  (desde_fila or desde_col) > 7:
-            raise FueraDelTablero('La posicion Inicial está fuera del tablero')
+            raise FueraDelTablero('ERROR: La posicion Inicial está fuera del tablero')
         if  (hasta_fila or hasta_col) > 7:
-            raise FueraDelTablero('La posicion Final está fuera del tablero')
+            raise FueraDelTablero('ERROR: La posicion Final está fuera del tablero')
         
         if 0 > (hasta_fila or hasta_col):
-            raise FueraDelTablero('La posicion Final está fuera del tablero')
+            raise FueraDelTablero('ERROR: La posicion Final está fuera del tablero')
         if 0 > (desde_fila or desde_col):
-            raise FueraDelTablero('La posicion Inicial está fuera del tablero')
+            raise FueraDelTablero('ERROR: La posicion Inicial está fuera del tablero')
         else: return True
 
     def val_mov_pieza(self, desde_fila: int,desde_col:int, 
@@ -71,7 +71,7 @@ class Tablero:
             hasta_fila, hasta_col):
             return True
         else: 
-            raise MovimientoErróneo(f'La ficha{self.__posiciones__[desde_fila][desde_col].__str__} no puede hacer ese movimiento')
+            raise MovimientoErróneo(f'ERROR: La ficha{self.__posiciones__[desde_fila][desde_col].__str__} no puede hacer ese movimiento')
 
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
@@ -110,7 +110,7 @@ class Tablero:
             
             try:
                 if self.__posiciones__[filaiteradora][columnaiteradora] is not None:
-                    raise MovimSaltaFicha('Este movimiento hace que la ficha salte a otra ficha')
+                    raise MovimSaltaFicha('ERROR: Este movimiento hace que la ficha salte a otra ficha')
                 
             except AttributeError:
                 continue
@@ -131,7 +131,7 @@ class Tablero:
         if colorpiezafinal == None:
             return True
         if colorpiezainicial == colorpiezafinal:
-            raise HayfichaAliada('En la posicion final, hay una ficha del mismo color que el tuyo')
+            raise HayfichaAliada('ERROR: En la posicion final, hay una ficha del mismo color que el tuyo')
         if colorpiezainicial != colorpiezafinal:
             return True
         
@@ -139,7 +139,7 @@ class Tablero:
                        hasta_fila:int,hasta_col:int)-> bool:
         if desde_fila == hasta_fila:
             if desde_col == hasta_col:
-                raise MovimientoErróneo('La posicion inicial elegida es la misma que la posicion final')
+                raise MovimientoErróneo('ERROR: La posicion inicial elegida es la misma que la posicion final')
             else:
                 return True
         else: return True
@@ -154,9 +154,9 @@ class Tablero:
                     if self.__posiciones__[desde_fila][desde_col].decircolor != \
                         self.__posiciones__[hasta_fila][hasta_col].decircolor:
                         return True
-                    else: raise NoPuedeatacar('El peon elegido no puede atacar en esa direccion')
+                    else: raise NoPuedeatacar('ERROR: El peon elegido no puede atacar en esa direccion')
                 except AttributeError:
-                    raise NoPuedeatacar('El peon no puede atacar en esa direccion, porque no hay ninguna ficha para capturar')
+                    raise NoPuedeatacar('ERROR: El peon no puede atacar en esa direccion, porque no hay ninguna ficha para capturar')
             else: return True
     def capturar_pieza(self,desde_fila,desde_col, hasta_fila, hasta_col):
         
@@ -170,7 +170,7 @@ class Tablero:
         if self.__posiciones__[desde_fila][desde_col].decircolor == color_jugador:
             return True
         else:
-            raise FichaAjena('Estás intentando mover una ficha del otro color >:C')
+            raise FichaAjena('ERROR: Estás intentando mover una ficha del otro color >:C')
 
     def val_movimiento(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int,color_player:str)-> bool:

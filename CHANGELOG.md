@@ -1,5 +1,10 @@
 # Usuario de github: FrancoQuiroga
 # Apellido y Nombre: Quiroga, Franco
+## [ V 0.0.7] 2025/10/14:
+## Adiciones:
+- Tests para ciertas funciones de main
+## Arreglos:
+- Función play() en main arreglada, casi lista para terminar(Solo falta que la condicion de salida funcione mejor)
 ## [ V 0.0.6] 2024/10/14:
 ## Adiciones:
 - Funcion que traduce las posiciones que completa el usuario
