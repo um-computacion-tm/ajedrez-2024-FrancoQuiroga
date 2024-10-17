@@ -80,3 +80,27 @@ class Ajedrez:
                            'E':4,'F':5,'G':6,'H':7}
 
         return diccionario_filas[desde_fila],diccionario_col[desde_col],diccionario_filas[hasta_fila],diccionario_col[hasta_col]
+    
+    def mostrar_pie_pagina(self):
+        '''Método que imprime la cabecera del tablero
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print( ' └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ ')
+        print( '     A       B       C       D       E       F       G       H      ')
+        
+    def mostrar_cabecera(self):
+        '''Método que imprime el pie de página del tablero,
+        y además las letras de las columnas
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print(' ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')
+    def mostrar_num_fila(self,numero):
+        '''Método que imprime la correspondiente fila ingresado el número
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print(numero+1,end=' ')
+    def mostrar_tablero(self):
+        #Llamar funcion que imprime la cabecera
+        #Imprimir el tablero y las fichas
+        #Llamar funcion que imprime el pie de página
+        pass

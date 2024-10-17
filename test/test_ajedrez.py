@@ -1,6 +1,6 @@
 import unittest
 from game.ajedrez import Ajedrez
-from unittest.mock import patch
+from unittest.mock import patch,call
 from game.excepciones import (MovimientoErróneo,MovimSaltaFicha,
                              NoexisteFicha,NoPuedeatacar,FueraDelTablero,
                              HayfichaAliada)
@@ -79,6 +79,26 @@ class Test_inicial_Ajedrez(unittest.TestCase):
     def test_longitudlist_negra(self):
         self.ajedrezdeprueba.__listacapturadaspornegro__ = ['a','b','c']
         self.assertEqual(3,self.ajedrezdeprueba.longitud_lista_negras)
-
+    
+    def test_mostrar_pie_pagina(self):
+        pass
+    @patch('builtins.print')
+    def test_num_fila(self,patch_print):
+        ordenejecucion = [call(1,end=' '),call(2,end=' '),call(3,end=' '),
+                          call(4,end=' '),call(5,end=' '),call(6,end=' '),
+                          call(7,end=' '),call(8,end=' ')]
+        for i in range(8):
+            self.ajedrezdeprueba.mostrar_num_fila(i)
+        patch_print.assert_has_calls(ordenejecucion,any_order=False)
+    @patch('builtins.print')
+    def test_mostrar_pie_pagina(self,patch):
+        cabecera = [call(' └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ '),
+                    call('     A       B       C       D       E       F       G       H      ')]
+        self.ajedrezdeprueba.mostrar_pie_pagina()
+        patch.assert_has_calls(cabecera,any_order=False)
+    @patch
+    def test_cabecera(self,patch):
+        cabecera = [call(' ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')]
+        patch.assert_has_calls(cabecera,any_order=False)
 if __name__ == '__main__':
     unittest.main()

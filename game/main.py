@@ -8,8 +8,8 @@ def mostrar_fichas_capturadas(ajedrez):
     print('Fichas capturadas por el jugador negro: ')
     ajedrez.listar_negras
 
-def mostrar_tablero():
-    pass
+def mostrar_tablero(ajedrez):
+    return ajedrez.mostrar_tablero()
 
 def turno_actual(ajedrez):
     print(ajedrez.decir_turno)
