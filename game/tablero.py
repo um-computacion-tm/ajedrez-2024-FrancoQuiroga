@@ -44,6 +44,10 @@ class Tablero:
     
     def obtn_pieza(self,fila,columna): #retorna un objeto o none
         return self.__posiciones__[fila][columna]
+    
+    @property
+    def obtener_tablero(self):
+        return self.__posiciones__
 
     def val_pieza_existe(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
@@ -198,8 +202,6 @@ class Tablero:
                             self.val_nosaltarpiezas(desde_fila,desde_col,hasta_fila,hasta_col),
                             self.validar_atq_peon(desde_fila,desde_col,hasta_fila,hasta_col),]
         return True
-        
-        
         
         
         

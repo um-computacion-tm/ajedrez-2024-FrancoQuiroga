@@ -85,7 +85,7 @@ class Ajedrez:
         '''Método que imprime la cabecera del tablero
         No recibe ningún parámetro
         SOLO DEBE SER USADO POR mostrar_tablero()'''
-        print( ' └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ ')
+        print( ' \n  └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ ')
         print( '     A       B       C       D       E       F       G       H      ')
         
     def mostrar_cabecera(self):
@@ -93,14 +93,40 @@ class Ajedrez:
         y además las letras de las columnas
         No recibe ningún parámetro
         SOLO DEBE SER USADO POR mostrar_tablero()'''
-        print(' ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')
+        print('  ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')
     def mostrar_num_fila(self,numero):
         '''Método que imprime la correspondiente fila ingresado el número
         No recibe ningún parámetro
         SOLO DEBE SER USADO POR mostrar_tablero()'''
         print(numero+1,end=' ')
+    def mostrar_intermedio(self):
+        '''Método que imprime la separación intermedia del tablero
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ ')
     def mostrar_tablero(self):
         #Llamar funcion que imprime la cabecera
         #Imprimir el tablero y las fichas
         #Llamar funcion que imprime el pie de página
-        pass
+        tableroactual = self.__tablero__.obtener_tablero
+        
+        self.mostrar_cabecera()
+        for numerofila, fila in enumerate(tableroactual):
+            self.mostrar_num_fila(numerofila)
+            for numero_col,columna in enumerate(fila):
+                if columna == None:
+                    if numero_col == 7:
+                        print(f'├      ┤', end='')    
+                    else:
+                        print(f'├      ', end='')
+                if numero_col == 7 and columna != None:
+                    print(f'├   {columna}   ┤', end='')
+                else:    
+                    print(f'├   {columna}   ', end='')
+            if numerofila != 7:
+                self.mostrar_intermedio()
+        self.mostrar_pie_pagina()
+
+if __name__ == '__main__':
+    ajedrez = Ajedrez()
+    ajedrez.mostrar_tablero()

@@ -96,9 +96,22 @@ class Test_inicial_Ajedrez(unittest.TestCase):
                     call('     A       B       C       D       E       F       G       H      ')]
         self.ajedrezdeprueba.mostrar_pie_pagina()
         patch.assert_has_calls(cabecera,any_order=False)
-    @patch
-    def test_cabecera(self,patch):
+    
+    @patch('builtins.print')
+    def test_cabecera(self,patch_pri):
         cabecera = [call(' ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')]
-        patch.assert_has_calls(cabecera,any_order=False)
+        self.ajedrezdeprueba.mostrar_cabecera()
+        patch_pri.assert_has_calls(cabecera,any_order=False)
+    @patch('builtins.print')
+    def test_intermedio(self,patching):
+        cabecera = [call(' ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ ')]
+        self.ajedrezdeprueba.mostrar_intermedio()
+        patching.assert_has_calls(cabecera,any_order=False)
+
+    #def test_visual_tablero(self):
+    #    self.ajedrezdeprueba.mostrar_tablero()
+
+
+    
 if __name__ == '__main__':
     unittest.main()
