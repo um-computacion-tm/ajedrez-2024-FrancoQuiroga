@@ -98,7 +98,7 @@ class Ajedrez:
         '''Método que imprime la correspondiente fila ingresado el número
         No recibe ningún parámetro
         SOLO DEBE SER USADO POR mostrar_tablero()'''
-        print(numero+1,end=' ')
+        print(abs(numero-8),end=' ')
     def mostrar_intermedio(self):
         '''Método que imprime la separación intermedia del tablero
         No recibe ningún parámetro
@@ -116,17 +116,22 @@ class Ajedrez:
             for numero_col,columna in enumerate(fila):
                 if columna == None:
                     if numero_col == 7:
-                        print(f'├      ┤', end='')    
-                    else:
-                        print(f'├      ', end='')
-                if numero_col == 7 and columna != None:
-                    print(f'├   {columna}   ┤', end='')
-                else:    
-                    print(f'├   {columna}   ', end='')
+                        print(f'├       ┤', end='')    
+                    elif numero_col == 0:
+                        print(f'├       ', end='')    
+                    else :
+                        print(f'┼       ', end='')
+                else:
+                    if numero_col == 7:
+                        print(f'├   {columna}   ┤', end='')
+                    elif numero_col == 0:
+                        print(f'├   {columna}   ', end='')
+                    else:    
+                        print(f'┼   {columna}   ', end='')
             if numerofila != 7:
                 self.mostrar_intermedio()
         self.mostrar_pie_pagina()
 
-if __name__ == '__main__':
-    ajedrez = Ajedrez()
-    ajedrez.mostrar_tablero()
+#if __name__ == '__main__':
+#    ajedrez = Ajedrez()
+#    ajedrez.mostrar_tablero()

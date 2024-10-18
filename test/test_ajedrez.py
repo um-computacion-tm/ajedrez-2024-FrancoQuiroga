@@ -84,32 +84,68 @@ class Test_inicial_Ajedrez(unittest.TestCase):
         pass
     @patch('builtins.print')
     def test_num_fila(self,patch_print):
-        ordenejecucion = [call(1,end=' '),call(2,end=' '),call(3,end=' '),
-                          call(4,end=' '),call(5,end=' '),call(6,end=' '),
-                          call(7,end=' '),call(8,end=' ')]
+        ordenejecucion = [call(8,end=' '),call(7,end=' '),call(6,end=' '),
+                          call(5,end=' '),call(4,end=' '),call(3,end=' '),
+                          call(2,end=' '),call(1,end=' ')]
         for i in range(8):
             self.ajedrezdeprueba.mostrar_num_fila(i)
         patch_print.assert_has_calls(ordenejecucion,any_order=False)
     @patch('builtins.print')
     def test_mostrar_pie_pagina(self,patch):
-        cabecera = [call(' └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ '),
+        cabecera = [call(' \n  └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ '),
                     call('     A       B       C       D       E       F       G       H      ')]
         self.ajedrezdeprueba.mostrar_pie_pagina()
         patch.assert_has_calls(cabecera,any_order=False)
     
     @patch('builtins.print')
     def test_cabecera(self,patch_pri):
-        cabecera = [call(' ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')]
+        cabecera = [call('  ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')]
         self.ajedrezdeprueba.mostrar_cabecera()
         patch_pri.assert_has_calls(cabecera,any_order=False)
     @patch('builtins.print')
     def test_intermedio(self,patching):
-        cabecera = [call(' ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ ')]
+        cabecera = [call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ ')]
         self.ajedrezdeprueba.mostrar_intermedio()
         patching.assert_has_calls(cabecera,any_order=False)
-
-    #def test_visual_tablero(self):
-    #    self.ajedrezdeprueba.mostrar_tablero()
+    
+    @patch('builtins.print')
+    def test_visual_tablero(self,patch_print):
+        tablero = [call('  ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ '),
+ call(8, end=' '),
+ call('├   ♖   ', end=''), call('┼   ♘   ', end=''), call('┼   ♙   ', end=''),
+ call('┼   ♔   ', end=''), call('┼   ♕   ', end=''), call('┼   ♙   ', end=''),
+ call('┼   ♘   ', end=''), call('├   ♖   ┤', end=''), call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(7, end=' '), call('├   ♙   ', end=''), call('┼   ♙   ', end=''),
+ call('┼   ♙   ', end=''), call('┼   ♙   ', end=''), call('┼   ♙   ', end=''),
+ call('┼   ♙   ', end=''), call('┼   ♙   ', end=''), call('├   ♙   ┤', end=''),
+ call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(6, end=' '), call('├       ', end=''), call('┼       ', end=''),
+ call('┼       ', end=''), call('┼       ', end=''), call('┼       ', end=''),
+ call('┼       ', end=''), call('┼       ', end=''), call('├       ┤', end=''),
+ call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(5, end=' '), call('├       ', end=''), call('┼       ', end=''),
+ call('┼       ', end=''),call('┼       ', end=''),call('┼       ', end=''),
+ call('┼       ', end=''),call('┼       ', end=''),call('├       ┤', end=''),
+ call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(4, end=' '),call('├       ', end=''),call('┼       ', end=''),
+ call('┼       ', end=''),call('┼       ', end=''),call('┼       ', end=''),
+ call('┼       ', end=''),call('┼       ', end=''),call('├       ┤', end=''),
+ call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(3, end=' '),call('├       ', end=''),call('┼       ', end=''),
+ call('┼       ', end=''),call('┼       ', end=''),call('┼       ', end=''),
+ call('┼       ', end=''),call('┼       ', end=''),call('├       ┤', end=''),
+ call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(2, end=' '),call('├   ♟   ', end=''),call('┼   ♟   ', end=''),
+ call('┼   ♟   ', end=''),call('┼   ♟   ', end=''),call('┼   ♟   ', end=''),
+ call('┼   ♟   ', end=''),call('┼   ♟   ', end=''),call('├   ♟   ┤', end=''),
+ call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
+ call(1, end=' '),call('├   ♜   ', end=''),call('┼   ♞   ', end=''),
+ call('┼   ♝   ', end=''),call('┼   ♚   ', end=''),call('┼   ♛   ', end=''),
+ call('┼   ♝   ', end=''),call('┼   ♞   ', end=''),call('├   ♜   ┤', end=''),
+ call(' \n  └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ '),
+ call('     A       B       C       D       E       F       G       H      ')]
+        self.ajedrezdeprueba.mostrar_tablero()
+        patch_print.assert_has_calls(tablero,any_order=False)
 
 
     

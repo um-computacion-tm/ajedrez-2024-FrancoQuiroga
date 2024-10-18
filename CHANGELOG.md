@@ -1,5 +1,10 @@
 # Usuario de github: FrancoQuiroga
 # Apellido y Nombre: Quiroga, Franco
+## [ V 0.0.7] 2025/10/18:
+## Adiciones:
+- 
+## Arreglos:
+- Arreglado un bug de main, que cambiaba el dato de la columna inicial
 ## [ V 0.0.7] 2025/10/14:
 ## Adiciones:
 - Tests para ciertas funciones de main

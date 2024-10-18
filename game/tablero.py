@@ -52,8 +52,8 @@ class Tablero:
     def val_pieza_existe(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
         if self.__posiciones__[desde_fila][desde_col] is None:
-            raise NoexisteFicha('ERROR: No hay ninguna ficha en la posicion inicial')
-        else:
+            raise NoexisteFicha(f'ERROR: No hay ninguna ficha en la posicion inicial')
+        elif self.__posiciones__[desde_fila][desde_col] is type(object):
             return True
         
     def val_adentro_tablero(self, desde_fila: int,desde_col:int, 
@@ -75,7 +75,7 @@ class Tablero:
             hasta_fila, hasta_col):
             return True
         else: 
-            raise MovimientoErróneo(f'ERROR: La ficha{self.__posiciones__[desde_fila][desde_col].__str__} no puede hacer ese movimiento')
+            raise MovimientoErróneo(f'ERROR: La ficha{self.__posiciones__[desde_fila][desde_col].__str__()} no puede hacer ese movimiento')
 
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
@@ -119,7 +119,8 @@ class Tablero:
             except AttributeError:
                 continue
         
-        else: return True 
+        else: 
+            return True 
                 
         
 

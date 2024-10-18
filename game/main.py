@@ -12,7 +12,7 @@ def mostrar_tablero(ajedrez):
     return ajedrez.mostrar_tablero()
 
 def turno_actual(ajedrez):
-    print(ajedrez.decir_turno)
+    return(ajedrez.decir_turno)
 
 def verificar_ganador(ajedrez):
     #Si alguno de los jugadores tiene 16 piezas, gana automaticamente
@@ -25,9 +25,20 @@ def verificar_ganador(ajedrez):
 def play(ajedrez):
     while True:
         print('Tablero Actual: ')
-        mostrar_tablero()
+        print(f'El jugador actual es: {turno_actual(ajedrez)}')
+        mostrar_tablero(ajedrez)
+
         # Pide el input del jugador
+        desde_fila = 0
+        desde_col = 0
+        hasta_fila = 0
+        hasta_col = 0
+        desde_fila_elegida = 0
+        desde_col_elegida = 0
+        hasta_fila_elegida = 0
+        hasta_col_elegida = 0
         try:
+            
             print('Elija la Fila y Columna de la ficha que quiere mover')
             desde_fila = input('Ingrese la fila: ')
             desde_col  = str(input('Ingrese la columna: '))
@@ -40,7 +51,7 @@ def play(ajedrez):
                     exit('Cerrando el programa')
             desde_fila = int(desde_fila)
             hasta_fila = int(hasta_fila)
-            desde_col = hasta_col.upper()
+            desde_col = desde_col.upper()
             hasta_col = hasta_col.upper()
             movimiento = ajedrez.traducir_posiciones(desde_fila,desde_col,hasta_fila,hasta_col)
         except AttributeError:
@@ -56,8 +67,8 @@ def play(ajedrez):
         
         try:
             print('INTENTANDO REALIZAR EL MOVIMIENTO INDICADO')
-            desde_fila,desde_col,hasta_fila,hasta_col = movimiento
-            ajedrez.mover(desde_fila,desde_col,hasta_fila,hasta_col)
+            desde_fila_elegida,desde_col_elegida,hasta_fila_elegida,hasta_col_elegida = movimiento
+            ajedrez.mover(desde_fila_elegida,desde_col_elegida,hasta_fila_elegida,hasta_col_elegida)
         except Exception as e:
               print(e)
               continue

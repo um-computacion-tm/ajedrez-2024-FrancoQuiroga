@@ -100,6 +100,7 @@ class Test_Tablero_setup(unittest.TestCase):
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4, 5,5))
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4,5,3 ))
         self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4,6,6 ))
+        self.assertTrue(self.tablerodeprueba.val_nosaltarpiezas(4,4,4,4 ))
 
     def test_piezaaliada(self):
         self.assertTrue(self.tablerodeprueba.pieza_aliada(0,0, 5,4))
