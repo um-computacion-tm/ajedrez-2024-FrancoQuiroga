@@ -34,14 +34,22 @@ def play(ajedrez):
             
             print('Elija la Fila y Columna de la ficha que quiere mover')
             desde_fila = input('Ingrese la fila: ')
+            if (desde_fila.lower()=='q'):
+                exit('CERRANDO')
             desde_col  = str(input('Ingrese la columna: '))
+            if (desde_fila.lower()=='q'):
+                exit('CERRANDO')
             print('Elija la posicion a donde mover la ficha')
             hasta_fila = input('Ingrese la fila objetivo: ')
+            if (desde_fila.lower()=='q'):
+                exit('CERRANDO')
             hasta_col = str(input('Ingrese la columna objetivo: '))
+            if (desde_fila.lower()=='q'):
+                exit('CERRANDO')
             inputsverif = [desde_fila,desde_col,hasta_fila,hasta_col]
-            for iter in range(4):
-                if (inputsverif[iter] == 'Q') or (inputsverif[iter] == 'q'):
-                    exit('Cerrando el programa')
+            #for iter in range(4):
+            #    if any(input.lower() == 'q' for input in inputsverif):
+            #        exit('Cerrando el programa')
             desde_fila = int(desde_fila)
             hasta_fila = int(hasta_fila)
             desde_col = desde_col.upper()
@@ -60,8 +68,8 @@ def play(ajedrez):
         
         try:
             print('INTENTANDO REALIZAR EL MOVIMIENTO INDICADO')
-            desde_fila_elegida,desde_col_elegida,hasta_fila_elegida,hasta_col_elegida = movimiento
-            ajedrez.mover(desde_fila_elegida,desde_col_elegida,hasta_fila_elegida,hasta_col_elegida)
+            desde_fila,desde_col,hasta_fila,hasta_col = movimiento
+            ajedrez.mover(desde_fila,desde_col,hasta_fila,hasta_col)
         except Exception as e:
               print(e)
               continue

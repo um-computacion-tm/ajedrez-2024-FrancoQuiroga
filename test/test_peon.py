@@ -52,6 +52,8 @@ class Test_movimiento_Peon(unittest.TestCase):
         #self.assertTrue(self.peon_prueba_blanco.movimiento(3,2, 2,1))
 
         self.assertFalse(self.peon_prueba_negro.movimiento(6,6, 4,5))
+        self.assertTrue(self.peon_prueba_negro.movimiento(4,4,5,3))
+        self.assertTrue(self.peon_prueba_negro.movimiento(1,0,2,1))
         
 if __name__ == '__main__':
     unittest.main()
