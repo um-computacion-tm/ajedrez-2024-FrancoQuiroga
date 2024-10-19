@@ -110,9 +110,9 @@ class Peon(Piezas):
         if self.movimientoinicial(desde_fila,desde_col,
                                  hasta_fila,hasta_col):
              return True
-        #if self.atacar(desde_fila,desde_col,
-        #                         hasta_fila,hasta_col):
-        #     return True
+        if self.atacar(desde_fila,desde_col,
+                                hasta_fila,hasta_col):
+            return True
         else: return False
              
 

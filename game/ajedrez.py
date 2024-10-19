@@ -36,22 +36,29 @@ class Ajedrez:
             #VERIFICAR QUE EL JUGADOR BLANCO NO PUEDA --------
             #MOVER FICHAS NEGRAS -------
 
-        except Exception as e:
-            raise e
+        except :
+            raise 
     @property
     def decir_turno(self):
         return self.__turno__
+    
     @property
-    def lista_blancas(self):
+    def longitud_lista_blancas(self):
+        return len(self.__listacapturadasporblanco__)
+    @property
+    def longitud_lista_negras(self):
+        return len(self.__listacapturadaspornegro__)
+    
+    
+    @property
+    def listar_blancas(self):
         for i in self.__listacapturadasporblanco__:
             print(i, end=' ')
-            return self.__listacapturadasporblanco__
-
     @property
-    def lista_negras(self):
+    def listar_negras(self):
         for i in self.__listacapturadaspornegro__:
             print(i, end=' ')
-            return self.__listacapturadaspornegro__
+        
 
     def traducir_posiciones(self,desde_fila:int,desde_col:str
                             ,hasta_fila:int,hasta_col:str):
@@ -73,3 +80,58 @@ class Ajedrez:
                            'E':4,'F':5,'G':6,'H':7}
 
         return diccionario_filas[desde_fila],diccionario_col[desde_col],diccionario_filas[hasta_fila],diccionario_col[hasta_col]
+    
+    def mostrar_pie_pagina(self):
+        '''Método que imprime la cabecera del tablero
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print( ' \n  └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘ ')
+        print( '     A       B       C       D       E       F       G       H      ')
+        
+    def mostrar_cabecera(self):
+        '''Método que imprime el pie de página del tablero,
+        y además las letras de las columnas
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print('  ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ ')
+    def mostrar_num_fila(self,numero):
+        '''Método que imprime la correspondiente fila ingresado el número
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print(abs(numero-8),end=' ')
+    def mostrar_intermedio(self):
+        '''Método que imprime la separación intermedia del tablero
+        No recibe ningún parámetro
+        SOLO DEBE SER USADO POR mostrar_tablero()'''
+        print(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ ')
+    def mostrar_tablero(self):
+        #Llamar funcion que imprime la cabecera
+        #Imprimir el tablero y las fichas
+        #Llamar funcion que imprime el pie de página
+        tableroactual = self.__tablero__.obtener_tablero
+        
+        self.mostrar_cabecera()
+        for numerofila, fila in enumerate(tableroactual):
+            self.mostrar_num_fila(numerofila)
+            for numero_col,columna in enumerate(fila):
+                if columna == None:
+                    if numero_col == 7:
+                        print(f'├       ┤', end='')    
+                    elif numero_col == 0:
+                        print(f'├       ', end='')    
+                    else :
+                        print(f'┼       ', end='')
+                else:
+                    if numero_col == 7:
+                        print(f'├   {columna}   ┤', end='')
+                    elif numero_col == 0:
+                        print(f'├   {columna}   ', end='')
+                    else:    
+                        print(f'┼   {columna}   ', end='')
+            if numerofila != 7:
+                self.mostrar_intermedio()
+        self.mostrar_pie_pagina()
+
+#if __name__ == '__main__':
+#    ajedrez = Ajedrez()
+#    ajedrez.mostrar_tablero()

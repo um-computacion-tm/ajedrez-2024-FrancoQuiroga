@@ -1,14 +1,27 @@
 # Usuario de github: FrancoQuiroga
 # Apellido y Nombre: Quiroga, Franco
+## [ V 0.0.7] 2025/10/18:
+## Adiciones:
+- 
+## Arreglos:
+- Arreglado un bug de main, que cambiaba el dato de la columna inicial
+- Arreglado un error con el ataque del peon
+## [ V 0.0.7] 2025/10/14:
+## Adiciones:
+- Tests para ciertas funciones de main
+## Arreglos:
+- Función play() en main arreglada, casi lista para terminar(Solo falta que la condicion de salida funcione mejor)
 ## [ V 0.0.6] 2024/10/14:
 ## Adiciones:
 - Funcion que traduce las posiciones que completa el usuario
 con datos usables por el tablero
 - Funciones en main que le piden informacion a la clase ajedrez
+- Métodos en ajedrez para devolver las piezas capturadas durante el juego
 
 ## Arreglos:
 - Funcion validar_movimiento terminada, y agregada la verificación
 que valida que el usuario sea del mismo color con la ficha
+- Las excepciones ahora tienen un comentario asociado, que es utilizado en main para comunicarle al jugador que error cometió
 
 ## [ V 0.0.5] 2024/09/26:
 ## Arreglos:
