@@ -104,6 +104,20 @@ class Ajedrez:
         No recibe ningún parámetro
         SOLO DEBE SER USADO POR mostrar_tablero()'''
         print(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ ')
+    def print_casilla_vacía(self,numero_col):
+        if numero_col == 7:
+                        print(f'├       ┤', end='')    
+        elif numero_col == 0:
+                        print(f'├       ', end='')    
+        else :
+                        print(f'┼       ', end='')
+    def print_casilla_ocupada(self,numero_col,columna):
+        if numero_col == 7:
+                        print(f'├   {columna}   ┤', end='')
+        elif numero_col == 0:
+                        print(f'├   {columna}   ', end='')
+        else:    
+                        print(f'┼   {columna}   ', end='')
     def mostrar_tablero(self):
         #Llamar funcion que imprime la cabecera
         #Imprimir el tablero y las fichas
@@ -115,19 +129,9 @@ class Ajedrez:
             self.mostrar_num_fila(numerofila)
             for numero_col,columna in enumerate(fila):
                 if columna == None:
-                    if numero_col == 7:
-                        print(f'├       ┤', end='')    
-                    elif numero_col == 0:
-                        print(f'├       ', end='')    
-                    else :
-                        print(f'┼       ', end='')
+                    self.print_casilla_vacía(numero_col)
                 else:
-                    if numero_col == 7:
-                        print(f'├   {columna}   ┤', end='')
-                    elif numero_col == 0:
-                        print(f'├   {columna}   ', end='')
-                    else:    
-                        print(f'┼   {columna}   ', end='')
+                    self.print_casilla_ocupada(numero_col,columna)
             if numerofila != 7:
                 self.mostrar_intermedio()
         self.mostrar_pie_pagina()
