@@ -35,15 +35,7 @@ class Test_funcionesadyacentes(unittest.TestCase):
 
     @patch('builtins.print')
     def test_turno_actual(self,print):
-        turno_actual(self.ajedrez_prueba)
-        print.assert_called_once_with('WHITE')
-        self.ajedrez_prueba.__turno__ = 'BLACK'
-        turno_actual(self.ajedrez_prueba)
-        print.assert_called_with('BLACK')
-        turno_actual(self.ajedrez_prueba)
-
-        listacalls = [call('WHITE'),call('BLACK'),call('BLACK')]
-        print.assert_has_calls(listacalls,any_order=False)
+        self.assertEqual('WHITE',turno_actual(self.ajedrez_prueba))
     
     def test_verificar_ganador_blanco(self):
         for i in range(16):

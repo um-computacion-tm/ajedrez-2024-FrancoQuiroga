@@ -5,6 +5,7 @@
 - 
 ## Arreglos:
 - Arreglado un bug de main, que cambiaba el dato de la columna inicial
+- Arreglado un error con el ataque del peon
 ## [ V 0.0.7] 2025/10/14:
 ## Adiciones:
 - Tests para ciertas funciones de main

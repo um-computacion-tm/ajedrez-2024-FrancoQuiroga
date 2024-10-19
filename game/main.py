@@ -29,14 +29,7 @@ def play(ajedrez):
         mostrar_tablero(ajedrez)
 
         # Pide el input del jugador
-        desde_fila = 0
-        desde_col = 0
-        hasta_fila = 0
-        hasta_col = 0
-        desde_fila_elegida = 0
-        desde_col_elegida = 0
-        hasta_fila_elegida = 0
-        hasta_col_elegida = 0
+        
         try:
             
             print('Elija la Fila y Columna de la ficha que quiere mover')

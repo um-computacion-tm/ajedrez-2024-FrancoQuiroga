@@ -18,7 +18,11 @@ class Piezas:
     @property
     def decircolor(self)-> str:
         return self.__color__
-    
+    def swap_color_intrfz(self):
+        temp = self.white_str
+        self.white_str = self.black_str
+        self.black_str = temp
+        
     def __str__(self) -> str:
         if self.__color__ == 'WHITE':
             return self.white_str

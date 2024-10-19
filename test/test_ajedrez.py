@@ -112,8 +112,8 @@ class Test_inicial_Ajedrez(unittest.TestCase):
     def test_visual_tablero(self,patch_print):
         tablero = [call('  ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐ '),
  call(8, end=' '),
- call('├   ♖   ', end=''), call('┼   ♘   ', end=''), call('┼   ♙   ', end=''),
- call('┼   ♔   ', end=''), call('┼   ♕   ', end=''), call('┼   ♙   ', end=''),
+ call('├   ♖   ', end=''), call('┼   ♘   ', end=''), call('┼   ♗   ', end=''),
+ call('┼   ♔   ', end=''), call('┼   ♕   ', end=''), call('┼   ♗   ', end=''),
  call('┼   ♘   ', end=''), call('├   ♖   ┤', end=''), call(' \n  ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤ '),
  call(7, end=' '), call('├   ♙   ', end=''), call('┼   ♙   ', end=''),
  call('┼   ♙   ', end=''), call('┼   ♙   ', end=''), call('┼   ♙   ', end=''),
