@@ -53,7 +53,7 @@ class Tablero:
                        hasta_fila:int,hasta_col:int)-> bool:
         if self.__posiciones__[desde_fila][desde_col] is None:
             raise NoexisteFicha(f'ERROR: No hay ninguna ficha en la posicion inicial')
-        elif self.__posiciones__[desde_fila][desde_col] is type(object):
+        elif isinstance(self.__posiciones__[desde_fila][desde_col],(Caballo,Reina,Rey,Alfil,Torre,Peon)):
             return True
         
     def val_adentro_tablero(self, desde_fila: int,desde_col:int, 
@@ -75,7 +75,7 @@ class Tablero:
             hasta_fila, hasta_col):
             return True
         else: 
-            raise MovimientoErróneo(f'ERROR: La ficha{self.__posiciones__[desde_fila][desde_col].__str__()} no puede hacer ese movimiento')
+            raise MovimientoErróneo(f'ERROR: La ficha {self.__posiciones__[desde_fila][desde_col].__str__()} no puede hacer ese movimiento')
 
     def val_nosaltarpiezas(self, desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int)-> bool:
@@ -173,7 +173,7 @@ class Tablero:
     def verificar_jugador(self,desde_fila: int,desde_col:int, 
                        hasta_fila:int,hasta_col:int,color_jugador):
         if self.__posiciones__[desde_fila][desde_col].decircolor == color_jugador:
-            return True
+            return True 
         else:
             raise FichaAjena('ERROR: Estás intentando mover una ficha del otro color >:C')
 

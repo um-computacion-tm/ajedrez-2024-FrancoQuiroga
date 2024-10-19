@@ -34,6 +34,7 @@ class Test_Tablero_setup(unittest.TestCase):
         self.assertEqual(self.tablerodeprueba.obtn_pieza(4,4),None)
 
     def test_validar_movimiento(self):
+        print(self.tablerodeprueba.__posiciones__[0][1], 'esto existe')
         self.assertTrue(self.tablerodeprueba.val_pieza_existe(0,1, 0,2))
         with self.assertRaises(NoexisteFicha):
             self.tablerodeprueba.val_pieza_existe(4,4, 0,2)
