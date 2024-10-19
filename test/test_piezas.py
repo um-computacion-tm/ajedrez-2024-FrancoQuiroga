@@ -17,6 +17,13 @@ class Test_setup_pieza(unittest.TestCase): # Testea el setup de Pieza y la funci
     def test_decircolor_negro(self):
         self.assertEqual('BLACK', self.piezadepruebanegro.decircolor)
 
+    def test_swap_color_intrfz(self):
+        self.piezadepruebablanco.white_str = 'negro'
+        self.piezadepruebablanco.black_str = 'blanco'
+        self.piezadepruebablanco.swap_color_intrfz()
+
+        self.assertEqual(self.piezadepruebablanco.white_str,'blanco')
+        self.assertEqual(self.piezadepruebablanco.black_str,'negro')
 
 if __name__ == '__main__':
     unittest.main()

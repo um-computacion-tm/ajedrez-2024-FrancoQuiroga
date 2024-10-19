@@ -2,10 +2,11 @@
 # Apellido y Nombre: Quiroga, Franco
 ## [ V 0.0.7] 2025/10/18:
 ## Adiciones:
-- 
+- Funcion para cambiar la fichas de las piezas, dependiendo del color del usuario
 ## Arreglos:
 - Arreglado un bug de main, que cambiaba el dato de la columna inicial
 - Arreglado un error con el ataque del peon
+- play() en main arreglado para que se cierre el programa con más facilidad.
 ## [ V 0.0.7] 2025/10/14:
 ## Adiciones:
 - Tests para ciertas funciones de main
