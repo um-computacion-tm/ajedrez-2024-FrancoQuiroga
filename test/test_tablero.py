@@ -3,7 +3,7 @@ from game.torre import Torre
 from game.excepciones import (NoPuedeatacar, MovimientoErróneo,
                                HayfichaAliada,MovimSaltaFicha, 
                                NoexisteFicha, FueraDelTablero,
-                               FichaAjena)
+                               FichaAjena,ReyCapturado)
 from game.caballo import Caballo
 from game.reina import Reina
 import unittest
@@ -149,6 +149,10 @@ class Test_tablero_movimiento(unittest.TestCase):
         self.assertIsInstance(self.tablerodeprueba.capturar_pieza(0,0,7,4), Reina)
         self.assertEqual(self.tablerodeprueba.__posiciones__[0][0], None)
         self.assertIsInstance(self.tablerodeprueba.__posiciones__[7][4], Torre)
+
+        with self.assertRaises(ReyCapturado):
+            self.tablerodeprueba.capturar_pieza(0,0,7,3)
+
     def test_capturar_pieza_lugarvacio(self):
         
         self.assertIsNone(self.tablerodeprueba.capturar_pieza(0,0,4,4))
