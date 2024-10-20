@@ -18,6 +18,9 @@ class MovimientoErróneo(Exception):
     porque es un mov inválido. 
     """
     ...
+class TerminaJuego(Exception):
+    ...
+
 class ReyCapturado(Exception):
     ...
 class FichaAjena(MovimientoErróneo):
