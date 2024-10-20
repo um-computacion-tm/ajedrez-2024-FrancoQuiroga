@@ -6,7 +6,7 @@ from game.reina import Reina
 from game.rey import Rey
 from game.excepciones import (NoPuedeatacar, MovimientoErróneo,
                         HayfichaAliada,MovimSaltaFicha,
-                        NoexisteFicha, FueraDelTablero,FichaAjena)
+                        NoexisteFicha, FueraDelTablero,FichaAjena,ReyCapturado)
 
 
 class Tablero:
@@ -45,6 +45,16 @@ class Tablero:
     def obtn_pieza(self,fila,columna): #retorna un objeto o none
         return self.__posiciones__[fila][columna]
     
+    @property
+    def cambiar_str_piezas(self):
+        for fila in self.__posiciones__:
+            for columna in fila:
+                if columna == None:
+                    continue
+                else:
+                    columna.swap_color_intrfz()
+                    continue
+
     @property
     def obtener_tablero(self):
         return self.__posiciones__
@@ -168,6 +178,8 @@ class Tablero:
         ficha_capturada = self.__posiciones__[hasta_fila][hasta_col]
         self.__posiciones__[hasta_fila][hasta_col] = self.__posiciones__[desde_fila][desde_col]
         self.__posiciones__[desde_fila][desde_col] = None
+        if isinstance(ficha_capturada,Rey) :
+            raise ReyCapturado('Un Rey a sido capturado, el juego ha terminado')
         return ficha_capturada
 
     def verificar_jugador(self,desde_fila: int,desde_col:int, 

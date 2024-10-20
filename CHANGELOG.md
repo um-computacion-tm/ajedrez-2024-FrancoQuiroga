@@ -2,16 +2,18 @@
 # Apellido y Nombre: Quiroga, Franco
 ## [ V 0.0.7] 2025/10/18:
 ## Adiciones:
-- Funcion para cambiar la fichas de las piezas, dependiendo del color del usuario
+- Funcion para cambiar la fichas de las piezas, dependiendo del color del usuario.
+- Menú para mejorar la experiencia del usuario.
+- Funciones en Ajedrez y en main que acceden a una funcion nueva en tablero, que en conjunto permiten cambiar el color de las fichas, para que se adaptan a consolas con temas/colores claros.
 ## Arreglos:
-- Arreglado un bug de main, que cambiaba el dato de la columna inicial
-- Arreglado un error con el ataque del peon
+- Arreglado un bug de main, que cambiaba el dato de la columna inicial.
+- Arreglado un error con el ataque del peon.
 - play() en main arreglado para que se cierre el programa con más facilidad.
 ## [ V 0.0.7] 2025/10/14:
 ## Adiciones:
-- Tests para ciertas funciones de main
+- Tests para ciertas funciones de main.
 ## Arreglos:
-- Función play() en main arreglada, casi lista para terminar(Solo falta que la condicion de salida funcione mejor)
+- Función play() en main arreglada, casi lista para terminar(Solo falta que la condicion de salida funcione mejor).
 ## [ V 0.0.6] 2024/10/14:
 ## Adiciones:
 - Funcion que traduce las posiciones que completa el usuario

@@ -36,8 +36,11 @@ class Ajedrez:
             #VERIFICAR QUE EL JUGADOR BLANCO NO PUEDA --------
             #MOVER FICHAS NEGRAS -------
 
-        except :
+        except:
             raise 
+    @property
+    def cambiar_interfaz(self):
+          self.__tablero__.cambiar_str_piezas
     @property
     def decir_turno(self):
         return self.__turno__
@@ -58,7 +61,7 @@ class Ajedrez:
     def listar_negras(self):
         for i in self.__listacapturadaspornegro__:
             print(i, end=' ')
-        
+    
 
     def traducir_posiciones(self,desde_fila:int,desde_col:str
                             ,hasta_fila:int,hasta_col:str):
