@@ -1,6 +1,8 @@
 import unittest
+from game.excepciones import(TerminaJuego)
 from game.main import (main,play,mostrar_fichas_capturadas,
-                       mostrar_tablero,turno_actual,verificar_ganador)
+                       mostrar_tablero,turno_actual,verificar_ganador,
+                         moverpieza,tomar_input, play)
 from unittest.mock import patch,call
 from game.ajedrez import Ajedrez
 
@@ -47,8 +49,57 @@ class Test_funcionesadyacentes(unittest.TestCase):
         for i in range(16):
             self.ajedrez_prueba.__listacapturadaspornegro__.append('AA')
         self.assertFalse(verificar_ganador(self.ajedrez_prueba))
+    @patch('builtins.print')
+    def test_mostrar_tablero(self,patch_print):
+        mostrar_tablero(self.ajedrez_prueba)
+        self.assertEqual(patch_print.call_count, 82)
 
+    @patch('builtins.print')
+    def test_mover_pieza(self,patch_print):
+        self.ajedrez_prueba.__turno__ = 'BLACK'
+        moverpieza(self.ajedrez_prueba,1,1,2,1)
+        self.assertEqual(patch_print.call_count, 1)
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['1','A','q'])
+    def test_tomar_input_salida1(self,patch_input,patch_print):
+        with self.assertRaises(TerminaJuego):
+            tomar_input()
+        self.assertEqual(patch_print.call_count,1)
+        self.assertEqual(patch_input.call_count,3)
     
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['1','A','2','B'])
+    def test_tomar_input_completo(self,patch_input,patch_print):
+        lista_salida = tomar_input()
+        self.assertEqual(len(lista_salida),4)
+        self.assertEqual(lista_salida,('1','A','2','B'))
+    
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['q'])
+    def test_tomar_input_salida2(self,patch_input,print):    
+        with self.assertRaises(TerminaJuego):
+            tomar_input()
+        self.assertEqual(patch_input.call_count,1)
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['1','Q'])
+    def test_tomar_input_salida3(self,patch_input,pri):      
+        with self.assertRaises(TerminaJuego):
+            tomar_input()
+        self.assertEqual(patch_input.call_count,2)
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['1','1','1','q'])
+    def test_tomar_input_salida4(self,patch_input,print):    
+        with self.assertRaises(TerminaJuego):
+            tomar_input()
+        self.assertEqual(patch_input.call_count,4)
+
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['1','A','2','B','q'])
+    def test_play(self,inputs,outpust):
+        play(self.ajedrez_prueba)
+        self.assertEqual(inputs.call_count, 5)
+        
+
 #class Test_funcion_play(unittest.TestCase):
 #    def setUp(self) -> None:
 #        self.ajedrezprueba = Ajedrez()

@@ -1,7 +1,7 @@
 from game.ajedrez import Ajedrez
 from game.excepciones import (NoexisteFicha,NoPuedeatacar,
                               FueraDelTablero, MovimientoErróneo,
-                              FichaAjena, HayfichaAliada, MovimSaltaFicha,ReyCapturado)    
+                              FichaAjena, HayfichaAliada, MovimSaltaFicha,ReyCapturado,TerminaJuego)    
 def mostrar_fichas_capturadas(ajedrez):
     print('Fichas caputuradas por el jugador blanco: ')
     ajedrez.listar_blancas
@@ -25,6 +25,26 @@ def verificar_ganador(ajedrez):
 def moverpieza(ajedrez,desde_fila,desde_col,hasta_fila,hasta_col):
             print('INTENTANDO REALIZAR EL MOVIMIENTO INDICADO')
             ajedrez.mover(desde_fila,desde_col,hasta_fila,hasta_col)
+
+def tomar_input()-> list:
+    desde_fila = (input('Ingrese la fila: '))
+    if (desde_fila.lower()=='q'):
+        raise TerminaJuego('CERRANDO PARTIDA')
+        
+    desde_col  = str(input('Ingrese la columna: '))
+    if (desde_col.lower()=='q'):
+        raise TerminaJuego('CERRANDO PARTIDA')
+    print('Elija la posicion a donde mover la ficha')
+    hasta_fila = (input('Ingrese la fila objetivo: '))
+    if (hasta_fila.lower()=='q'):
+        raise TerminaJuego('CERRANDO PARTIDA')
+    hasta_col = str(input('Ingrese la columna objetivo: '))
+    if (hasta_col.lower()=='q'):
+        raise TerminaJuego('CERRANDO PARTIDA')
+    else:
+        return desde_fila,desde_col,hasta_fila,hasta_col
+
+
 def play(ajedrez):
     while True:
         print('Tablero Actual: ')
@@ -34,21 +54,10 @@ def play(ajedrez):
         # Pide el input del jugador
         
         try:
-            
             print('Elija la Fila y Columna de la ficha que quiere mover')
-            desde_fila = (input('Ingrese la fila: '))
-            if (desde_fila.lower()=='q'):
-                return False
-            desde_col  = str(input('Ingrese la columna: '))
-            if (desde_col.lower()=='q'):
-                return False
-            print('Elija la posicion a donde mover la ficha')
-            hasta_fila = (input('Ingrese la fila objetivo: '))
-            if (hasta_fila.lower()=='q'):
-                return False
-            hasta_col = str(input('Ingrese la columna objetivo: '))
-            if (hasta_col.lower()=='q'):
-                return False
+            
+            desde_fila,desde_col,hasta_fila,hasta_col = tomar_input()
+            
             desde_fila = int(desde_fila)
             hasta_fila = int(hasta_fila)
             desde_col = desde_col.upper()
@@ -60,9 +69,12 @@ def play(ajedrez):
             print('ERROR: ELIJA EN LAS FILAS NÚMEROS DEL 1-8 y EN LAS COLUMNAS LETRAS DE A-H')
             continue
         
-        except KeyError:
+        except KeyError:    
             print('ERROR: ELIJA EN LAS FILAS NÚMEROS DEL 1-8 y EN LAS COLUMNAS LETRAS DE A-H')
             continue
+        except TerminaJuego :
+            print('CERRANDO PARTIDA\n')
+            break
         
         try:
             moverpieza(ajedrez,desde_fila,desde_col,hasta_fila,hasta_col)
@@ -73,7 +85,7 @@ def play(ajedrez):
             else: 
                 print('El jugador negro es el ganador')
                 exit()
-            
+
         except Exception as e:
               print(e)
               continue
@@ -94,32 +106,38 @@ def menu():
            \$$$$$$                                                  
 """)
     while True:
-        print('1- Jugar al ajedrez')
-        print('2- Cambiar el color del tablero(El color por defecto está pensado para consolas en modo oscuro)')
-        print('3- Información Importante')
-        print('4- Cerrar el Juego')
         try:
-            inputuser = int('Elija una opción: ')
-            if 1 > inputuser > 3:
+            print('1- Jugar al ajedrez')
+            print('2- Cambiar el color del tablero(El color por defecto está pensado para consolas en modo oscuro)')
+            print('3- Información Importante')
+            print('4- Cerrar el Juego')
+            eleccion = int(input('Elija una opción: '))
+            if 1 > eleccion > 3:
                 print('ERROR: Elija un número correcto (1-2-3)')
                 continue
-            if inputuser == 1:
+            if eleccion == 1:
                 play(ajedrez)
-            if inputuser == 2:
+            if eleccion == 2:
+                print('COLOR CAMBIADO EXITOSAMENTE\n')
                 ajedrez.cambiar_interfaz
-            if inputuser == 3:
-                print('- Para volver al menú durante el juego, presionar q o Q \n \
-                      - Si usas tu consola en color claro, es recomendable cambiar la interfaz\n \
-                    para una experiencia más agradable \
-                      ')
+            if eleccion == 3:
+                print('''- Para volver al menú durante el juego, presionar q o Q
+- Si usas tu consola en color claro, es recomendable cambiar la interfaz para una experiencia más agradable \n
+                      ''')
                 continue
-            if inputuser == 4:
-                exit('Cerrando Programa')
+            if eleccion == 4:
+                print('CERRANDO PROGRAMA')
+                return False
+            eleccion = 0
         except:
             print('ERROR: Ingrese un número correcto')
+            continue
             
 def main():
     menu()
+    #ajedrez= Ajedrez()
+    #play(ajedrez)
+    
 
 if __name__ == '__main__':
     main()
