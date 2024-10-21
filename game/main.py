@@ -91,8 +91,7 @@ def play(ajedrez):
               continue
 def menu():
     ajedrez = Ajedrez()
-    print("""
-  ______                           __                              
+    print("""  ______                           __                              
  /      |                         |  |                             
 |  $$$$$|      __   ______    ____| $$  ______    ______  ________ 
 | $$__| $$     |  | /      |  /      $$ /      |  /      |        |
