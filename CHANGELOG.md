@@ -11,6 +11,7 @@
 - play() en main arreglado para que se cierre el programa con más facilidad.
 - Separadas las funcionalidades de tomar_inputs y play, para intentar mejora la complejidad
 - Tests para main
+
 ## [ V 0.0.7] 2025/10/14:
 ## Adiciones:
 - Tests para ciertas funciones de main.

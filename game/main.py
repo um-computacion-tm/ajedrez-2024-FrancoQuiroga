@@ -91,7 +91,7 @@ def play(ajedrez):
               continue
 def menu():
     ajedrez = Ajedrez()
-    print("""
+    print(r"""
   ______                            __                              
  /      \                          |  \                             
 |  $$$$$$\      __   ______    ____| $$  ______    ______  ________ 
@@ -111,7 +111,8 @@ def menu():
             print('2- Cambiar el color del tablero(El color por defecto está pensado para consolas en modo oscuro)')
             print('3- Información Importante')
             print('4- Cerrar el Juego')
-            eleccion = int(input('Elija una opción: '))
+            eleccion = input('Elija una opción: ')
+            eleccion = int(eleccion)
             if 1 > eleccion > 3:
                 print('ERROR: Elija un número correcto (1-2-3)')
                 continue
@@ -121,8 +122,9 @@ def menu():
                 print('COLOR CAMBIADO EXITOSAMENTE\n')
                 ajedrez.cambiar_interfaz
             if eleccion == 3:
-                print('''- Para volver al menú durante el juego, presionar q o Q
-- Si usas tu consola en color claro, es recomendable cambiar la interfaz para una experiencia más agradable \n
+                print('''- Para volver a este menú durante el juego, presionar 'q' o 'Q'
+- Si usas tu consola en color claro, es recomendable cambiar la interfaz para una experiencia más agradable
+- Las fichas de la parte inferior son SIEMPRE del jugador BLANCO, y las de la parte superior son del jugador NEGRO \n
                       ''')
                 continue
             if eleccion == 4:
