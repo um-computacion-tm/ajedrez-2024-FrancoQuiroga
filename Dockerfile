@@ -5,4 +5,5 @@ RUN git clone https://github.com/um-computacion-tm/ajedrez-2024-FrancoQuiroga.gi
 WORKDIR /ajedrez-2024-FrancoQuiroga
 RUN pip install -r requirements.txt
 
+
 CMD [ "sh", "-c", "coverage run -m unittest && coverage report -m && python -m game.main" ]
