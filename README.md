@@ -18,6 +18,11 @@ IMPORTANTE: Se requiere de una conexión a internet para descargar el repositori
 ```bash
 sudo docker build --no-cache -t ajedrez . && sudo docker run -it ajedrez
 ```
+En linux puedes correr el script 'construir_docker.sh' para construir y ejecutar el comando de arriba automáticamente:
+```bash
+sh construir_docker.sh
+```
+
 Para jugar una vez construida la imagen:
 ```bash
 sudo docker run -it ajedrez
