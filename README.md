@@ -3,7 +3,8 @@ Ajedrez
 - Proyecto creado por Franco Enzo Quiroga Abraham
 
 ## Como instalar y jugar:
-IMPORTANTE: Se requiere de una conexión a internet para descargar el repositorio y para construir la imagen de docker. Una vez construida, la conexión a internet no es obligatoria. Este tutorial funciona para 
+IMPORTANTE: Se requiere de una conexión a internet para descargar el repositorio y para construir la imagen de docker. Una vez construida, la conexión a internet no es obligatoria. Este tutorial sigue una instalación en linux, a través de la consola de comandos bash.
+
 1) Instalar Docker (Preferiblemente usar Linux):  https://docs.docker.com/get-started/get-docker/
 
 2) Usando Git descargar el repositorio y cambiar el directorio de tu consola al de git:
