@@ -28,7 +28,7 @@ sudo usermod -aG docker $USER
 ```
 Reiniciar la computadora después de esos 2 comandos  
 (IMPORTANTE: Agregar tu usuario al grupo de Docker puede ser un riesgo
-de seguridad para tu sistema, usa el comando con )  
+de seguridad para tu sistema, usa el comando a tu propia discreción )  
 Para sacar a tu usuario del grupo de Docker:
 ```bash
 sudo gpasswd -d $USER docker
